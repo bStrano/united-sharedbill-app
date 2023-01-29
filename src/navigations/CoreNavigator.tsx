@@ -10,14 +10,14 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function CoreNavigator() {
   return (
-    <Tab.Navigator shifting={true} activeColor="#e91e63">
+    <Tab.Navigator shifting={true} compact={true}>
       <Tab.Screen
         name="GroupStack"
         component={GroupStack}
         options={{
           tabBarLabel: 'Groups',
           tabBarIcon: ({color}) => (
-            <FontAwesomeIcon name="group" color={color} size={26} />
+            <FontAwesomeIcon name="group" color={color} size={18} />
           ),
         }}
       />
@@ -27,7 +27,7 @@ export default function CoreNavigator() {
         options={{
           tabBarLabel: 'Friends',
           tabBarIcon: ({color}) => (
-            <FontAwesome5Icon name="user-friends" color={color} size={26} />
+            <FontAwesome5Icon name="user-friends" color={color} size={20} />
           ),
         }}
       />
@@ -37,7 +37,7 @@ export default function CoreNavigator() {
         options={{
           tabBarLabel: 'Friends',
           tabBarIcon: ({color}) => (
-            <AntDesign name="setting" color={color} size={26} />
+            <AntDesign name="setting" color={color} size={25} />
           ),
         }}
       />

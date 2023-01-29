@@ -1,5 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import GroupScreen from '../screens/GroupScreen';
+import GroupListScreen from '../screens/Groups/List/GroupListScreen';
 
 const Stack = createNativeStackNavigator();
 export default function GroupStack() {
@@ -7,7 +7,7 @@ export default function GroupStack() {
     <Stack.Navigator>
       <Stack.Screen
         name="GroupScreen"
-        component={GroupScreen}
+        component={GroupListScreen}
         options={{title: 'Groups', headerShown: false}}
       />
     </Stack.Navigator>
