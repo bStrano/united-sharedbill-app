@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {Card, Text} from 'react-native-paper';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {GroupListItemInterface} from '../../../../types/IGroupItem';
+import {GroupListItemInterface} from '../../../../types/GroupItemInterface';
 
 interface GroupItemPropsInterface {
   item: GroupListItemInterface;

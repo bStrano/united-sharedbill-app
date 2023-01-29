@@ -1,5 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import FriendScreen from '../screens/FriendScreen';
+import FriendScreen from '../screens/Friends/List/FriendScreen';
 
 const Stack = createNativeStackNavigator();
 export default function FriendStack() {
