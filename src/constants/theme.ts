@@ -1,4 +1,5 @@
-import {DefaultTheme} from 'react-native-paper';
+import {configureFonts, DefaultTheme} from 'react-native-paper';
+import {fontConfig} from './theme-fonts.config';
 
 export const theme = {
   ...DefaultTheme,
@@ -8,4 +9,5 @@ export const theme = {
     secondary: '#414757',
     error: '#f13a59',
   },
+  fonts: configureFonts({isV3: true, config: fontConfig}),
 };
