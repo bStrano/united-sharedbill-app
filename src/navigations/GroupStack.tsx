@@ -1,14 +1,15 @@
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import GroupListScreen from '../screens/Groups/List/GroupListScreen';
+import GroupDashboardTopTabNavigator from './GroupDashboardTopTabNavigator';
 
 const Stack = createNativeStackNavigator();
 export default function GroupStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="GroupScreen"
-        component={GroupListScreen}
-        options={{title: 'Groups', headerShown: false}}
+        name="GroupDashboard"
+        component={GroupDashboardTopTabNavigator}
+        options={{title: 'Group Dashboard', headerShown: false}}
       />
     </Stack.Navigator>
   );

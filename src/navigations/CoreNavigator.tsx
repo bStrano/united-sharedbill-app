@@ -1,10 +1,10 @@
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import React from 'react';
-import GroupStack from './GroupStack';
 import FriendStack from './FriendStack';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import GroupListScreen from '../screens/Groups/List/GroupListScreen';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -12,8 +12,8 @@ export default function CoreNavigator() {
   return (
     <Tab.Navigator shifting={true} compact={true}>
       <Tab.Screen
-        name="GroupStack"
-        component={GroupStack}
+        name="GroupList"
+        component={GroupListScreen}
         options={{
           tabBarLabel: 'Groups',
           tabBarIcon: ({color}) => (
@@ -22,7 +22,7 @@ export default function CoreNavigator() {
         }}
       />
       <Tab.Screen
-        name="FriendStack"
+        name="FriendList"
         component={FriendStack}
         options={{
           tabBarLabel: 'Friends',
@@ -32,7 +32,7 @@ export default function CoreNavigator() {
         }}
       />
       <Tab.Screen
-        name="SettingStack"
+        name="Settigns"
         component={FriendStack}
         options={{
           tabBarLabel: 'Friends',

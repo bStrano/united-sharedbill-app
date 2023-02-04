@@ -2,6 +2,7 @@ import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {FAB} from 'react-native-paper';
 import FriendItem from './Item/FriendItem';
+import Headline from '../../../components/Headline';
 
 interface FriendScreenPropsInterface {}
 
@@ -26,9 +27,11 @@ const DATA = [
   },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function FriendScreen(props: FriendScreenPropsInterface) {
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
+      <Headline title={'Meus amigos'} />
       <FlatList
         data={DATA}
         renderItem={({item}) => <FriendItem item={item} />}
@@ -48,6 +51,9 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     bottom: 0,
+  },
+  container: {
+    flex: 1,
   },
 });
 export default FriendScreen;

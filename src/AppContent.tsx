@@ -1,7 +1,8 @@
+import React from 'react';
 import {useContext} from 'react';
 import {SessionContext} from './providers/SessionProvider';
 import AuthenticationStack from './navigations/AuthenticationStack';
-import CoreNavigator from './navigations/CoreNavigator';
+import AuthenticatedStack from './navigations/AuthenticatedStack';
 
 export default function AppContent() {
   const sessionContext = useContext(SessionContext);
@@ -10,5 +11,5 @@ export default function AppContent() {
     return <AuthenticationStack />;
   }
 
-  return <CoreNavigator />;
+  return <AuthenticatedStack />;
 }

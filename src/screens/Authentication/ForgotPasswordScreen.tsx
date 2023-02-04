@@ -1,20 +1,22 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useMemo, useState} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import BackButton from '../../components/BackButton';
 import Logo from '../../components/Logo';
-import {theme} from '../../constants/theme';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 import Background from '../../components/Background';
 import Header from '../../components/Header';
 import {emailValidator} from '../../utils/ValidatorHelpers';
 import {Navigation} from '../../types/Naviation';
+import {MD3Theme, useTheme} from 'react-native-paper';
 
 type Props = {
   navigation: Navigation;
 };
 
 const ForgotPasswordScreen = ({navigation}: Props) => {
+  const theme = useTheme();
+  const styles = useMemo(() => styleSheet(theme), [theme]);
   const [email, setEmail] = useState({value: '', error: ''});
 
   const _onSendPressed = () => {
@@ -62,18 +64,19 @@ const ForgotPasswordScreen = ({navigation}: Props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  back: {
-    width: '100%',
-    marginTop: 12,
-  },
-  button: {
-    marginTop: 12,
-  },
-  label: {
-    color: theme.colors.secondary,
-    width: '100%',
-  },
-});
+const styleSheet = (theme: MD3Theme) =>
+  StyleSheet.create({
+    back: {
+      width: '100%',
+      marginTop: 12,
+    },
+    button: {
+      marginTop: 12,
+    },
+    label: {
+      color: theme.colors.secondary,
+      width: '100%',
+    },
+  });
 
 export default memo(ForgotPasswordScreen);

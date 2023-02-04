@@ -13,7 +13,7 @@ function FriendItem(props: IFriendItemProps) {
       <View style={styles.contentContainer}>
         <Avatar.Text size={28} label="BS" />
         <View style={{flex: 1}}>
-          <Text variant={'bodyLarge'} style={styles.nameText}>
+          <Text variant={'titleMedium'} style={styles.nameText}>
             {props.item.name}
           </Text>
           <Text variant={'labelSmall'} style={styles.nameText}>

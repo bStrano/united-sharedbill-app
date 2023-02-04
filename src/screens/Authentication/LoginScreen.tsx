@@ -1,15 +1,15 @@
-import React, { memo, useContext, useState } from "react";
+import React, {memo, useContext, useMemo, useState} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 
 import BackButton from '../../components/BackButton';
 import Logo from '../../components/Logo';
-import {theme} from '../../constants/theme';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 import Background from '../../components/Background';
 import Header from '../../components/Header';
 import {Navigation} from '../../types/Naviation';
-import { SessionContext } from "../../providers/SessionProvider";
+import {SessionContext} from '../../providers/SessionProvider';
+import {MD3Theme, useTheme} from 'react-native-paper';
 
 type Props = {
   navigation: Navigation;
@@ -17,11 +17,13 @@ type Props = {
 
 const LoginScreen = ({navigation}: Props) => {
   const sessionContext = useContext(SessionContext);
+  const theme = useTheme();
+  const styles = useMemo(() => styleSheet(theme), [theme]);
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
 
   const _onLoginPressed = () => {
-    sessionContext.login()
+    sessionContext.login();
     // const emailError = '';
     // emailValidator(email.value);
     // const passwordError = '';
@@ -36,7 +38,7 @@ const LoginScreen = ({navigation}: Props) => {
   };
 
   return (
-    <Background>
+    <Background style={styles.container}>
       <BackButton goBack={() => navigation.navigate('HomeScreen')} />
 
       <Logo />
@@ -87,23 +89,29 @@ const LoginScreen = ({navigation}: Props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  forgotPassword: {
-    width: '100%',
-    alignItems: 'flex-end',
-    marginBottom: 24,
-  },
-  row: {
-    flexDirection: 'row',
-    marginTop: 4,
-  },
-  label: {
-    color: theme.colors.secondary,
-  },
-  link: {
-    fontWeight: 'bold',
-    color: theme.colors.primary,
-  },
-});
+const styleSheet = (theme: MD3Theme) =>
+  StyleSheet.create({
+    container: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 20,
+    },
+    forgotPassword: {
+      width: '100%',
+      alignItems: 'flex-end',
+      marginBottom: 24,
+    },
+    row: {
+      flexDirection: 'row',
+      marginTop: 4,
+    },
+    label: {
+      color: theme.colors.secondary,
+    },
+    link: {
+      fontWeight: 'bold',
+      color: theme.colors.primary,
+    },
+  });
 
 export default memo(LoginScreen);

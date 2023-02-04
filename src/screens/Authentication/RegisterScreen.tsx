@@ -1,8 +1,7 @@
-import React, {memo, useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {memo, useMemo, useState} from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import BackButton from '../../components/BackButton';
 import Logo from '../../components/Logo';
-import {theme} from '../../constants/theme';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 import Background from '../../components/Background';
@@ -13,12 +12,15 @@ import {
   passwordValidator,
 } from '../../utils/ValidatorHelpers';
 import {Navigation} from '../../types/Naviation';
+import {MD3Theme, useTheme} from 'react-native-paper';
 
 type Props = {
   navigation: Navigation;
 };
 
 const RegisterScreen = ({navigation}: Props) => {
+  const theme = useTheme();
+  const styles = useMemo(() => styleSheet(theme), [theme]);
   const [name, setName] = useState({value: '', error: ''});
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
@@ -39,74 +41,83 @@ const RegisterScreen = ({navigation}: Props) => {
   };
 
   return (
-    <Background>
-      <BackButton goBack={() => navigation.navigate('HomeScreen')} />
+    <Background style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <BackButton goBack={() => navigation.navigate('HomeScreen')} />
 
-      <Logo />
+        <Logo />
 
-      <Header>Create Account</Header>
+        <Header>Create Account</Header>
 
-      <TextInput
-        label="Name"
-        returnKeyType="next"
-        value={name.value}
-        onChangeText={text => setName({value: text, error: ''})}
-        error={!!name.error}
-        errorText={name.error}
-      />
+        <TextInput
+          label="Name"
+          returnKeyType="next"
+          value={name.value}
+          onChangeText={text => setName({value: text, error: ''})}
+          error={!!name.error}
+          errorText={name.error}
+        />
 
-      <TextInput
-        label="Email"
-        returnKeyType="next"
-        value={email.value}
-        onChangeText={text => setEmail({value: text, error: ''})}
-        error={!!email.error}
-        errorText={email.error}
-        autoCapitalize="none"
-        autoComplete="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-      />
+        <TextInput
+          label="Email"
+          returnKeyType="next"
+          value={email.value}
+          onChangeText={text => setEmail({value: text, error: ''})}
+          error={!!email.error}
+          errorText={email.error}
+          autoCapitalize="none"
+          autoComplete="email"
+          textContentType="emailAddress"
+          keyboardType="email-address"
+        />
 
-      <TextInput
-        label="Password"
-        returnKeyType="done"
-        value={password.value}
-        onChangeText={text => setPassword({value: text, error: ''})}
-        error={!!password.error}
-        errorText={password.error}
-        secureTextEntry
-      />
+        <TextInput
+          label="Password"
+          returnKeyType="done"
+          value={password.value}
+          onChangeText={text => setPassword({value: text, error: ''})}
+          error={!!password.error}
+          errorText={password.error}
+          secureTextEntry
+        />
 
-      <Button mode="contained" onPress={_onSignUpPressed} style={styles.button}>
-        Sign Up
-      </Button>
+        <Button mode="contained" onPress={_onSignUpPressed} style={styles.button}>
+          Sign Up
+        </Button>
 
-      <View style={styles.row}>
-        <Text style={styles.label}>Already have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-          <Text style={styles.link}>Login</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.row}>
+          <Text style={styles.label}>Already have an account? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+            <Text style={styles.link}>Login</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+
     </Background>
   );
 };
 
-const styles = StyleSheet.create({
-  label: {
-    color: theme.colors.secondary,
-  },
-  button: {
-    marginTop: 24,
-  },
-  row: {
-    flexDirection: 'row',
-    marginTop: 4,
-  },
-  link: {
-    fontWeight: 'bold',
-    color: theme.colors.primary,
-  },
-});
+const styleSheet = (theme: MD3Theme) =>
+  StyleSheet.create({
+    container: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingHorizontal: 20,
+    },
+    label: {
+      color: theme.colors.secondary,
+    },
+    button: {
+      marginTop: 24,
+    },
+    row: {
+      flexDirection: 'row',
+      marginTop: 4,
+    },
+    link: {
+      fontWeight: 'bold',
+      color: theme.colors.primary,
+    },
+  });
 
 export default memo(RegisterScreen);

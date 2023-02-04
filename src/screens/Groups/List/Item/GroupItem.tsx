@@ -3,14 +3,25 @@ import {Image, StyleSheet, View} from 'react-native';
 import {Card, Text} from 'react-native-paper';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GroupListItemInterface} from '../../../../types/GroupItemInterface';
+import {useNavigation} from '@react-navigation/native';
 
 interface GroupItemPropsInterface {
   item: GroupListItemInterface;
 }
 
 function GroupItem({item}: GroupItemPropsInterface) {
+  const navigation = useNavigation();
+
+  const _onPress = () => {
+    navigation.navigate('GroupStack');
+  };
+
   return (
-    <Card style={styles.cardContainer}>
+    <Card
+      style={styles.cardContainer}
+      onPress={() =>
+        navigation.navigate('GroupStack', {screen: 'GroupDashboard'})
+      }>
       <Card.Content style={styles.innerContainer}>
         <Image
           style={styles.image}

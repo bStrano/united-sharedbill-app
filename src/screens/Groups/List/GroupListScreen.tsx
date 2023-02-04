@@ -2,6 +2,8 @@ import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {FAB} from 'react-native-paper';
 import GroupItem from './Item/GroupItem';
+import Headline from '../../../components/Headline';
+import Background from "../../../components/Background";
 
 interface GroupScreenPropsInterface {}
 
@@ -35,9 +37,11 @@ const DATA = [
   },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function GroupListScreen(props: GroupScreenPropsInterface) {
   return (
-    <View style={{flex: 1}}>
+    <Background style={styles.container}>
+      <Headline title={'Meus grupos'} />
       <FlatList
         data={DATA}
         renderItem={({item}) => <GroupItem item={item} />}
@@ -47,7 +51,7 @@ function GroupListScreen(props: GroupScreenPropsInterface) {
         style={styles.fab}
         onPress={() => console.log('Pressed')}
       />
-    </View>
+    </Background>
   );
 }
 
@@ -58,5 +62,8 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
+  container: {
+    flex: 1,
+  }
 });
 export default GroupListScreen;
