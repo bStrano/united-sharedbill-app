@@ -1,16 +1,17 @@
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import React from 'react';
-import FriendStack from './FriendStack';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import GroupListScreen from '../screens/Groups/List/GroupListScreen';
+import FriendScreen from '../screens/Friends/List/FriendScreen';
+import SettingScreen from '../screens/SettingScreen';
 
 const Tab = createMaterialBottomTabNavigator();
 
 export default function CoreNavigator() {
   return (
-    <Tab.Navigator shifting={true} compact={true}>
+    <Tab.Navigator shifting={true} compact={true} labeled={false}>
       <Tab.Screen
         name="GroupList"
         component={GroupListScreen}
@@ -23,7 +24,7 @@ export default function CoreNavigator() {
       />
       <Tab.Screen
         name="FriendList"
-        component={FriendStack}
+        component={FriendScreen}
         options={{
           tabBarLabel: 'Friends',
           tabBarIcon: ({color}) => (
@@ -33,7 +34,7 @@ export default function CoreNavigator() {
       />
       <Tab.Screen
         name="Settigns"
-        component={FriendStack}
+        component={SettingScreen}
         options={{
           tabBarLabel: 'Friends',
           tabBarIcon: ({color}) => (

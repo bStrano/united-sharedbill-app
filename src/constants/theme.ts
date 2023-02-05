@@ -22,6 +22,8 @@ export const CombinedDefaultTheme = {
     ...MD3LightTheme.colors,
     ...LightTheme.colors,
     primary: '#600EE6',
+    success: 'green',
+    error: 'red',
   },
   fonts: configureFonts({isV3: true, config: fontConfig}),
 };
@@ -32,6 +34,8 @@ export const CombinedDarkTheme = {
     ...MD3DarkTheme.colors,
     ...DarkTheme.colors,
     primary: '#600EE6',
+    success: 'green',
+    error: 'red',
   },
   fonts: configureFonts({isV3: true, config: fontConfig}),
 };
