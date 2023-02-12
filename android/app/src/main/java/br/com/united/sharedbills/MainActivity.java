@@ -1,4 +1,4 @@
-package com.unitedsharedbills;
+package br.com.united.sharedbills;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

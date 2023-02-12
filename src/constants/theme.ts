@@ -24,6 +24,7 @@ export const CombinedDefaultTheme = {
     primary: '#600EE6',
     success: 'green',
     error: 'red',
+    gradient: ['#6d19fa', '#600EE6', '#4604b5'],
   },
   fonts: configureFonts({isV3: true, config: fontConfig}),
 };
@@ -36,6 +37,7 @@ export const CombinedDarkTheme = {
     primary: '#600EE6',
     success: 'green',
     error: 'red',
+    gradient: ['#600EE6', '#850ee6'],
   },
   fonts: configureFonts({isV3: true, config: fontConfig}),
 };

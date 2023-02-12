@@ -1,5 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import LoginScreen from '../screens/Authentication/LoginScreen';
+import LoginScreen from '../screens/Authentication/Login/LoginScreen';
 import RegisterScreen from '../screens/Authentication/RegisterScreen';
 import ForgotPasswordScreen from '../screens/Authentication/ForgotPasswordScreen';
 import WelcomeScreen from '../screens/Authentication/WelcomeScreen';

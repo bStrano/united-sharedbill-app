@@ -1,6 +1,11 @@
 import React, {memo, useMemo, useState} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import BackButton from '../../components/BackButton';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import Logo from '../../components/Logo';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
@@ -43,7 +48,7 @@ const RegisterScreen = ({navigation}: Props) => {
   return (
     <Background style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <BackButton goBack={() => navigation.navigate('HomeScreen')} />
+        {/*<BackButton goBack={() => navigation.navigate('HomeScreen')} />*/}
 
         <Logo />
 
@@ -81,7 +86,10 @@ const RegisterScreen = ({navigation}: Props) => {
           secureTextEntry
         />
 
-        <Button mode="contained" onPress={_onSignUpPressed} style={styles.button}>
+        <Button
+          mode="contained"
+          onPress={_onSignUpPressed}
+          style={styles.button}>
           Sign Up
         </Button>
 
@@ -92,7 +100,6 @@ const RegisterScreen = ({navigation}: Props) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-
     </Background>
   );
 };
@@ -100,6 +107,8 @@ const RegisterScreen = ({navigation}: Props) => {
 const styleSheet = (theme: MD3Theme) =>
   StyleSheet.create({
     container: {
+      flex: 1,
+      width: '100%',
       justifyContent: 'center',
       alignItems: 'center',
       paddingHorizontal: 20,

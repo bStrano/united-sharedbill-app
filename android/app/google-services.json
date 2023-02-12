@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "131856245356",
+    "project_id": "united-sharedbills",
+    "storage_bucket": "united-sharedbills.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131856245356:android:fe825ba7986cb22a02ee49",
+        "android_client_info": {
+          "package_name": "br.com.united.sharedbills"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "131856245356-94m33oeeii24kmjp1o586nls59ad8pii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaku2e5c9R3EEem66U7sCe1-g4n8FTb9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "131856245356-94m33oeeii24kmjp1o586nls59ad8pii.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

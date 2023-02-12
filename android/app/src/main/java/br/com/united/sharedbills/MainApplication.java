@@ -1,4 +1,4 @@
-package com.unitedsharedbills;
+package br.com.united.sharedbills;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

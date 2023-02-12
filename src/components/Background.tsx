@@ -1,36 +1,34 @@
-import React, {memo} from 'react';
-import {StyleSheet, KeyboardAvoidingView, View, ViewProps} from 'react-native';
-import {useTheme} from 'react-native-paper';
+import React, {memo, useMemo} from 'react';
+import {
+  StyleSheet,
+  KeyboardAvoidingView,
+  ViewProps,
+} from 'react-native';
+import { AppTheme, useAppTheme } from "../../App";
 
 interface Props extends ViewProps {
   children: React.ReactNode;
 }
 
 const Background = ({children, ...props}: Props) => {
-  const theme = useTheme();
+  const theme = useAppTheme();
+  const styles = useMemo(() => styleSheet(theme), [theme]);
   return (
-    <View
-      {...props}
-      style={[
-        props.style,
-        {
-          flex: 1,
-          backgroundColor: theme.colors.background,
-        },
-      ]}>
-      <KeyboardAvoidingView style={styles.background} behavior="padding">
-        {children}
-      </KeyboardAvoidingView>
-    </View>
+    <KeyboardAvoidingView
+      style={[props.style, styles.background]}
+      behavior="padding">
+      {children}
+    </KeyboardAvoidingView>
   );
 };
 
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-});
+const styleSheet = (theme: AppTheme) =>
+  StyleSheet.create({
+    background: {
+      flex: 1,
+      backgroundColor: theme.colors.background,
+      width: '100%',
+    },
+  });
 
 export default memo(Background);
