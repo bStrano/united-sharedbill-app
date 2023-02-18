@@ -3,6 +3,8 @@ import LoginScreen from '../screens/Authentication/Login/LoginScreen';
 import RegisterScreen from '../screens/Authentication/RegisterScreen';
 import ForgotPasswordScreen from '../screens/Authentication/ForgotPasswordScreen';
 import WelcomeScreen from '../screens/Authentication/WelcomeScreen';
+import {FormProvider} from '@providers/FormProvider';
+import {UserRegisterValidator} from '../validators/UserRegisterValidator';
 
 const Stack = createNativeStackNavigator();
 export default function AuthenticationStack() {
@@ -15,7 +17,11 @@ export default function AuthenticationStack() {
       />
       <Stack.Screen
         name="RegisterScreen"
-        component={RegisterScreen}
+        component={(props: any) => (
+          <FormProvider formClass={UserRegisterValidator}>
+            <RegisterScreen {...props} />
+          </FormProvider>
+        )}
         options={{headerShown: false}}
       />
       <Stack.Screen

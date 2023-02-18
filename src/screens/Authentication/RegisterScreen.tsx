@@ -1,11 +1,5 @@
 import React, {memo, useMemo, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import Logo from '../../components/Logo';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
@@ -15,61 +9,53 @@ import {
   emailValidator,
   nameValidator,
   passwordValidator,
-} from '../../utils/ValidatorHelpers';
-import {Navigation} from '../../types/Naviation';
-import {MD3Theme, useTheme} from 'react-native-paper';
+} from '@utils/ValidatorHelpers';
+import {Navigation} from 'types/Naviation';
+import {MD3Theme, Text, useTheme} from 'react-native-paper';
+import {FormattedMessage} from 'react-intl';
+import {MESSAGES} from '@constants/messages-ids';
+import ControlledTextInput from '@components/ControlledTextInput';
+import {useAppForm} from '@providers/FormProvider';
+import LinearGradient from 'react-native-linear-gradient';
 
 type Props = {
   navigation: Navigation;
 };
 
 const RegisterScreen = ({navigation}: Props) => {
+  const formContext = useAppForm();
   const theme = useTheme();
   const styles = useMemo(() => styleSheet(theme), [theme]);
-  const [name, setName] = useState({value: '', error: ''});
-  const [email, setEmail] = useState({value: '', error: ''});
-  const [password, setPassword] = useState({value: '', error: ''});
 
-  const _onSignUpPressed = () => {
-    const nameError = nameValidator(name.value);
-    const emailError = emailValidator(email.value);
-    const passwordError = passwordValidator(password.value);
+  const onSubmit = () => {
+    console.log('OKJ');
+    formContext.onSubmit();
+    console.log('OK2');
 
-    if (emailError || passwordError || nameError) {
-      setName({...name, error: nameError});
-      setEmail({...email, error: emailError});
-      setPassword({...password, error: passwordError});
-      return;
-    }
-
-    navigation.navigate('Dashboard');
+    // console.log(data);
   };
 
   return (
     <Background style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/*<BackButton goBack={() => navigation.navigate('HomeScreen')} />*/}
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Logo />
+        </View>
 
-        <Logo />
+        <Header>
+          <FormattedMessage id={MESSAGES.ids.LABEL_CRATE_ACCOUNT} />
+        </Header>
 
-        <Header>Create Account</Header>
-
-        <TextInput
-          label="Name"
+        <ControlledTextInput
+          id={'name'}
+          label={<FormattedMessage id={MESSAGES.ids.NAME_INPUT_PLACEHOLDER} />}
           returnKeyType="next"
-          value={name.value}
-          onChangeText={text => setName({value: text, error: ''})}
-          error={!!name.error}
-          errorText={name.error}
         />
 
-        <TextInput
-          label="Email"
+        <ControlledTextInput
+          id={'email'}
+          label={<FormattedMessage id={MESSAGES.ids.EMAIL_INPUT_PLACEHOLDER} />}
           returnKeyType="next"
-          value={email.value}
-          onChangeText={text => setEmail({value: text, error: ''})}
-          error={!!email.error}
-          errorText={email.error}
           autoCapitalize="none"
           autoComplete="email"
           textContentType="emailAddress"
@@ -77,26 +63,42 @@ const RegisterScreen = ({navigation}: Props) => {
         />
 
         <TextInput
-          label="Password"
+          label={
+            <FormattedMessage id={MESSAGES.ids.PASSWORD_INPUT_PLACEHOLDER} />
+          }
+          id={'password'}
           returnKeyType="done"
-          value={password.value}
-          onChangeText={text => setPassword({value: text, error: ''})}
-          error={!!password.error}
-          errorText={password.error}
           secureTextEntry
         />
 
-        <Button
-          mode="contained"
-          onPress={_onSignUpPressed}
-          style={styles.button}>
-          Sign Up
-        </Button>
+        <LinearGradient
+          colors={theme.colors.gradient}
+          style={{
+            borderRadius: 8,
+            elevation: 2,
+            width: '100%',
+            padding: 0,
+            margin: 0,
+            height: 45,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity onPress={onSubmit}>
+            <Text variant={'bodyLarge'} style={{fontWeight: 'bold'}}>
+              <FormattedMessage id={MESSAGES.ids.BTN_LOGIN_REGISTER} />
+            </Text>
+          </TouchableOpacity>
+        </LinearGradient>
 
         <View style={styles.row}>
-          <Text style={styles.label}>Already have an account? </Text>
+          <Text style={styles.label}>
+            <FormattedMessage id={MESSAGES.ids.LABEL_ALREADY_REGISTERED} />
+          </Text>
           <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-            <Text style={styles.link}>Login</Text>
+            <Text style={styles.link}>
+              {' '}
+              <FormattedMessage id={MESSAGES.ids.BTN_LOGIN} />
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -109,8 +111,6 @@ const styleSheet = (theme: MD3Theme) =>
     container: {
       flex: 1,
       width: '100%',
-      justifyContent: 'center',
-      alignItems: 'center',
       paddingHorizontal: 20,
     },
     label: {

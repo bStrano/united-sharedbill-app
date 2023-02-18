@@ -34,7 +34,9 @@
         "./src/types/*"
       ]
     },
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true
   },
 }
 

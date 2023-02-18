@@ -16,6 +16,7 @@ export enum LoginTypeEnum {
   GOOGLE = 'google',
   APPLE = 'apple',
   FACEBOOK = 'facebook',
+  INTERNAL = 'internal',
 }
 interface SessionContextInterface {
   isLoggedIn: boolean;
