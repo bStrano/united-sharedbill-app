@@ -8,9 +8,9 @@ import {LoginTypeEnum, useSession} from '@providers/SessionProvider';
 import {MD3Theme, Text} from 'react-native-paper';
 import {FormattedMessage} from 'react-intl';
 import {MESSAGES} from '@constants/messages-ids';
-import LinearGradient from 'react-native-linear-gradient';
 import {LoginSocialForm} from './components/SocialLogin/LoginSocialForm';
 import {useAppTheme} from '../../../../App';
+import Button from '@components/Button';
 
 type Props = {
   navigation: Navigation;
@@ -81,24 +81,8 @@ const LoginScreen = ({navigation}: Props) => {
         </TouchableOpacity>
       </View>
 
-      <LinearGradient
-        colors={theme.colors.gradient}
-        style={{
-          borderRadius: 8,
-          elevation: 2,
-          width: '100%',
-          padding: 0,
-          margin: 0,
-          height: 45,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <TouchableOpacity onPress={_onLoginPressed}>
-          <Text variant={'bodyLarge'} style={{fontWeight: 'bold'}}>
-            Login
-          </Text>
-        </TouchableOpacity>
-      </LinearGradient>
+      <Button id={MESSAGES.ids.BTN_LOGIN} onPress={_onLoginPressed} />
+
       <LoginSocialForm />
       <View style={styles.row}>
         <Text style={styles.label}>

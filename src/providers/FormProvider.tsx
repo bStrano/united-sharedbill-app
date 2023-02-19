@@ -13,7 +13,7 @@ export const useAppForm = () => {
 
 interface FormContextInterface {
   form: UseFormReturn<FieldValues, any>;
-  onSubmit(): void;
+  onSubmit(handleSubmit: (data: any) => Promise<void>): void;
 }
 
 const FormContext = React.createContext({} as FormContextInterface);
@@ -22,10 +22,16 @@ export function FormProvider(props: FormProviderPropsInterface) {
   const resolver = classValidatorResolver(props.formClass);
   const form = useForm({resolver});
 
-  const onSubmit = () => {
-    console.log('ON SUBMIT');
+  const onSubmit = (handleSubmit: (data: any) => Promise<void>) => {
+    console.log('ON SUBMIT', form.getValues());
     // You can pass an async function for asynchronous validation.
-    form.handleSubmit((data) => console.log("data"), (errors) => console.log(errors))()
+    form.handleSubmit(
+      async data => {
+        await handleSubmit(data);
+        console.log('data');
+      },
+      errors => console.log(errors),
+    )();
   };
 
   return (

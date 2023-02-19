@@ -1,22 +1,17 @@
-import React, {memo, useMemo, useState} from 'react';
+import React, {memo, useMemo} from 'react';
 import {View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import Logo from '../../components/Logo';
-import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 import Background from '../../components/Background';
 import Header from '../../components/Header';
-import {
-  emailValidator,
-  nameValidator,
-  passwordValidator,
-} from '@utils/ValidatorHelpers';
 import {Navigation} from 'types/Naviation';
 import {MD3Theme, Text, useTheme} from 'react-native-paper';
 import {FormattedMessage} from 'react-intl';
 import {MESSAGES} from '@constants/messages-ids';
 import ControlledTextInput from '@components/ControlledTextInput';
 import {useAppForm} from '@providers/FormProvider';
-import LinearGradient from 'react-native-linear-gradient';
+import {useRegisterUserContext} from '@providers/RegisterUserProvider';
+import {UserRegisterInterface} from 'types/UserRegisterInterface';
 
 type Props = {
   navigation: Navigation;
@@ -26,10 +21,14 @@ const RegisterScreen = ({navigation}: Props) => {
   const formContext = useAppForm();
   const theme = useTheme();
   const styles = useMemo(() => styleSheet(theme), [theme]);
+  const registerUserContext = useRegisterUserContext();
 
   const onSubmit = () => {
     console.log('OKJ');
-    formContext.onSubmit();
+    formContext.onSubmit(
+      async (data: UserRegisterInterface) =>
+        await registerUserContext.registerUserMutation.mutate(data),
+    );
     console.log('OK2');
 
     // console.log(data);
@@ -62,34 +61,31 @@ const RegisterScreen = ({navigation}: Props) => {
           keyboardType="email-address"
         />
 
-        <TextInput
+        <ControlledTextInput
           label={
             <FormattedMessage id={MESSAGES.ids.PASSWORD_INPUT_PLACEHOLDER} />
           }
           id={'password'}
+          returnKeyType="next"
+          secureTextEntry
+        />
+
+        <ControlledTextInput
+          label={
+            <FormattedMessage
+              id={MESSAGES.ids.CONFIRM_PASSWORD_INPUT_PLACEHOLDER}
+            />
+          }
+          id={'confirmPassword'}
           returnKeyType="done"
           secureTextEntry
         />
 
-        <LinearGradient
-          colors={theme.colors.gradient}
-          style={{
-            borderRadius: 8,
-            elevation: 2,
-            width: '100%',
-            padding: 0,
-            margin: 0,
-            height: 45,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <TouchableOpacity onPress={onSubmit}>
-            <Text variant={'bodyLarge'} style={{fontWeight: 'bold'}}>
-              <FormattedMessage id={MESSAGES.ids.BTN_LOGIN_REGISTER} />
-            </Text>
-          </TouchableOpacity>
-        </LinearGradient>
-
+        <Button
+          id={MESSAGES.ids.BTN_LOGIN_REGISTER}
+          onPress={onSubmit}
+          isLoading={registerUserContext.registerUserMutation.isLoading}
+        />
         <View style={styles.row}>
           <Text style={styles.label}>
             <FormattedMessage id={MESSAGES.ids.LABEL_ALREADY_REGISTERED} />

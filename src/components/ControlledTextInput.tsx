@@ -3,12 +3,13 @@ import {View, StyleSheet, Text} from 'react-native';
 import {MD3Theme, TextInput as Input, useTheme} from 'react-native-paper';
 import {useAppForm} from '@providers/FormProvider';
 import {useController} from 'react-hook-form';
+import {FormattedMessage} from 'react-intl';
 type Props = React.ComponentProps<typeof Input> & {
   errorText?: string;
   id: string;
 };
 
-const ControlledTextInput = ({errorText, id, ...props}: Props) => {
+const ControlledTextInput = ({id, ...props}: Props) => {
   const formContext = useAppForm();
   const controller = useController({
     control: formContext.form.control,
@@ -17,7 +18,7 @@ const ControlledTextInput = ({errorText, id, ...props}: Props) => {
   const theme = useTheme();
   const styles = useMemo(() => styleSheet({theme}), [theme]);
 
-  console.log("CONTROLLER",controller.formState)
+  console.log('CONTROLLER', controller);
   return (
     <View style={styles.container}>
       <Input
@@ -26,12 +27,15 @@ const ControlledTextInput = ({errorText, id, ...props}: Props) => {
         selectionColor={theme.colors.primary}
         underlineColor="transparent"
         mode="outlined"
+        onChangeText={text => {
+          controller.field.onChange(text);
+        }}
         value={controller.field.value}
         {...props}
       />
-      {errorText ? (
+      {controller.fieldState.error?.message ? (
         <Text style={styles.error}>
-          {controller.formState.errors.root?.message}
+          <FormattedMessage id={controller.fieldState.error.message} />
         </Text>
       ) : null}
     </View>
