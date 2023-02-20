@@ -20,7 +20,10 @@ export enum LoginTypeEnum {
 }
 interface SessionContextInterface {
   isLoggedIn: boolean;
-  login(loginType: LoginTypeEnum): Promise<void>;
+  login(
+    loginType: LoginTypeEnum,
+    userCredentials?: {username: string; password: string},
+  ): Promise<void>;
   logout(): Promise<void>;
 }
 
@@ -36,12 +39,20 @@ function SessionProvider(props: ISessionProviderProps) {
 
   console.log('User', user);
   const login = useCallback(
-    async (type: LoginTypeEnum) => {
+    async (
+      type: LoginTypeEnum,
+      userCredentials?: {username: string; password: string},
+    ) => {
       let credentials: FirebaseAuthTypes.AuthCredential | undefined;
       switch (type) {
         case LoginTypeEnum.GOOGLE:
           credentials = await googleContext.login();
           break;
+        case LoginTypeEnum.INTERNAL:
+          await auth().signInWithEmailAndPassword(
+            userCredentials!.username,
+            userCredentials!.password,
+          );
       }
       console.log('Credentials', credentials);
       if (credentials) {

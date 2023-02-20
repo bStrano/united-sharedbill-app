@@ -4,6 +4,7 @@ import {Card, Text} from 'react-native-paper';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GroupListItemInterface} from '../../../../types/GroupItemInterface';
 import {useNavigation} from '@react-navigation/native';
+import {useAppTheme} from '../../../../../App';
 
 interface GroupItemPropsInterface {
   item: GroupListItemInterface;
@@ -11,6 +12,7 @@ interface GroupItemPropsInterface {
 
 function GroupItem({item}: GroupItemPropsInterface) {
   const navigation = useNavigation();
+  const theme = useAppTheme();
 
   const _onPress = () => {
     navigation.navigate('GroupStack');
@@ -33,7 +35,11 @@ function GroupItem({item}: GroupItemPropsInterface) {
           <View style={styles.titleContainer}>
             <Text variant="titleMedium">{item.name}</Text>
             <View style={styles.participantContainer}>
-              <MaterialIcons name={'groups'} size={20} />
+              <MaterialIcons
+                name={'groups'}
+                size={20}
+                color={theme.colors.text}
+              />
               <Text style={styles.participantText} variant="labelSmall">
                 {item.participantsCount}
               </Text>

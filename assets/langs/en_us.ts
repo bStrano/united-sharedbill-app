@@ -13,9 +13,18 @@ export const en_us = {
   ERROR_INVALID_PASSWORD: 'The password must contain at least 8 characters, ',
   ERROR_INVALID_CONFIRM_PASSWORD: 'The passwords doesnt match',
 
+  INPUT_GROUP_NAME: 'Nome do grupo',
+  INPUT_GROUP_DESCRIPTION: 'Descrição do grupo',
+  LABEL_GROUP_CREATE: 'Create group',
+  LABEL_INVITE_FRIENDS: 'Invite friends',
+  BTN_GROUP_REGISTER: 'Create group',
+
+
+  BTN_REGISTER: 'Register',
   BTN_FORGOT_PASSWORD: 'Forgot your password?',
   LABEL_LOGIN_REGISTER: "Don't have an account?",
   BTN_LOGIN_REGISTER: 'Sing up',
   LABEL_ALREADY_REGISTERED: 'Already have an account?',
   LABEL_CRATE_ACCOUNT: 'Create Account',
+
 };

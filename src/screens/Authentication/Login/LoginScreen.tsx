@@ -24,7 +24,10 @@ const LoginScreen = ({navigation}: Props) => {
   const [password, setPassword] = useState({value: '', error: ''});
 
   const _onLoginPressed = async () => {
-    await sessionContext.login(LoginTypeEnum.GOOGLE);
+    await sessionContext.login(LoginTypeEnum.INTERNAL, {
+      username: email.value,
+      password: password.value,
+    });
     // const emailError = '';
     // emailValidator(email.value);
     // const passwordError = '';
