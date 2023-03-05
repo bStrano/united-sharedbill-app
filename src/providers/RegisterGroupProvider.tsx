@@ -1,9 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {useMutation} from 'react-query';
-import {UserRegisterInterface} from 'types/UserRegisterInterface';
-import {GroupAPI} from "@apis/GroupAPI";
-import {GroupRegister} from "types/GroupRegister";
+import {GroupRegister} from 'types/GroupRegister';
 
 interface IGroupRegisterProviderProps {}
 

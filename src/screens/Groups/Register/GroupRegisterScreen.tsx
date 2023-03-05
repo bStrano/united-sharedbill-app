@@ -10,7 +10,7 @@ import {useMutation} from 'react-query';
 import {GroupRegister} from 'types/GroupRegister';
 import {useAppForm} from '@providers/FormProvider';
 import Timeline from '@screens/Groups/Register/components/Timeline';
-import {useNavigation} from '@react-navigation/native';
+import {CommonActions, useNavigation} from '@react-navigation/native';
 
 interface IGroupRegisterScreenProps {}
 
@@ -29,7 +29,17 @@ function GroupRegisterScreen(props: IGroupRegisterScreenProps) {
   const onSubmit = () => {
     formContext.onSubmit(async (data: GroupRegister) => {
       await groupRegisterMutation.mutateAsync(data);
-      navigation.navigate('GroupInviteFriends');
+
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 2,
+          routes: [
+            {name: 'CoreNavigator'},
+            {name: 'GroupStack'},
+            {name: 'GroupInviteFriends'},
+          ],
+        }),
+      );
     });
   };
 
