@@ -1,4 +1,5 @@
 export interface DebitInterface {
   name: string;
-  price: number;
+  total: number;
+  value: number;
 }

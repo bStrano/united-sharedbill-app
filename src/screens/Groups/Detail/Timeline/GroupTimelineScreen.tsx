@@ -1,58 +1,77 @@
 import React from 'react';
-import {FlatList, View} from 'react-native';
+import {SectionList, View} from 'react-native';
 import {GroupTimelineItem} from './Item/GroupTimelineItem';
+import {GroupActivityTimelineSectionInterface} from 'types/GroupActivityTimelineSectionInterface';
+import {GroupTimelineHeader} from '@screens/Groups/Detail/Timeline/Header/GroupTimelineHeader';
 
 interface IGroupDashboardScreenProps {}
 
-const MOCK = [
+const MOCK: GroupActivityTimelineSectionInterface[] = [
   {
-    date: new Date(),
-    isUserCreator: true,
-    debit: {
-      name: 'Pastel de Queijo',
-      price: 12.3,
-    },
-    creator: {
-      name: 'Bruno Strano',
-      id: 1,
-    },
+    title: 'Teste 1',
+    data: [
+      {
+        type: 'NEW_EXPENSE',
+        date: new Date(),
+        isUserCreator: true,
+        debit: {
+          name: 'Pastel de Queijo',
+          total: 12.3,
+          value: 6,
+        },
+        creator: {
+          name: 'Bruno Strano',
+          id: 1,
+        },
+      },
+      {
+        date: new Date(),
+        type: 'NEW_EXPENSE',
+        isUserCreator: true,
+        debit: {
+          name: 'Pastel de Queijo',
+          total: 12.3,
+          value: 6,
+        },
+        creator: {
+          name: 'Bruno Strano',
+          id: 1,
+        },
+      },
+    ],
   },
   {
-    date: new Date(),
-    isUserCreator: true,
-    debit: {
-      name: 'Pastel de Queijo',
-      price: 12.3,
-    },
-    creator: {
-      name: 'Bruno Strano',
-      id: 1,
-    },
-  },
-
-  {
-    date: new Date(),
-    isUserCreator: true,
-    debit: {
-      name: 'Pastel de Queijo',
-      price: 12.3,
-    },
-    creator: {
-      name: 'Bruno Strano',
-      id: 1,
-    },
-  },
-  {
-    date: new Date(),
-    isUserCreator: false,
-    debit: {
-      name: 'Pastel de Carne',
-      price: 14.3,
-    },
-    creator: {
-      name: 'Gabriel Gondo',
-      id: 2,
-    },
+    title: 'TITULO 2',
+    data: [
+      {
+        date: new Date(),
+        type: 'NEW_EXPENSE',
+        isUserCreator: true,
+        debit: {
+          name: 'Pastel de Queijo',
+          total: 12.3,
+          value: 6,
+        },
+        creator: {
+          name: 'Bruno Strano',
+          id: 1,
+        },
+      },
+      {
+        date: new Date(),
+        isUserCreator: false,
+        type: 'NEW_EXPENSE',
+        debit: {
+          name: 'Pastel de Carne',
+          total: 14.3,
+          value: 6,
+        },
+        creator: {
+          name: 'Gabriel Gondo',
+          id: 2,
+        },
+      },
+    ],
   },
 ];
 
@@ -60,9 +79,12 @@ const MOCK = [
 function GroupDashboardScreen(props: IGroupDashboardScreenProps) {
   return (
     <View>
-      <FlatList
-        data={MOCK}
-        renderItem={({item}) => <GroupTimelineItem item={item} />}
+      <SectionList
+        renderItem={({item}) => <GroupTimelineItem data={item} />}
+        renderSectionHeader={({section: {title}}) => (
+          <GroupTimelineHeader title={title} />
+        )}
+        sections={MOCK}
       />
     </View>
   );
