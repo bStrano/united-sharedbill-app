@@ -1,8 +1,12 @@
 export const en_us = {
+  welcome: 'Bem vindo asdasdasdasdas!',
+
   TEXT_WELCOME: 'Welcome!',
   TEXT_WELCOME_SUBTITLE: 'Welcome!',
 
-  BTN_LOGIN: 'Login',
+  SLOGAN: "I'm lovin' it.'",
+
+  BTN_LOGIN: 'LOG IN',
 
   EMAIL_INPUT_PLACEHOLDER: 'Email',
   PASSWORD_INPUT_PLACEHOLDER: 'Password',

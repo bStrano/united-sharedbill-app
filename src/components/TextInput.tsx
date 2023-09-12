@@ -8,17 +8,12 @@ const TextInput = ({errorText, ...props}: Props) => {
   const styles = useMemo(() => styleSheet({theme}), [theme]);
 
   return (
-    <View style={styles.container}>
-      <Input
-        style={styles.input}
-        contentStyle={{borderRadius: 20}}
-        selectionColor={theme.colors.primary}
-        underlineColor="transparent"
-        mode="outlined"
-        {...props}
-      />
-      {errorText ? <Text style={styles.error}>{errorText}</Text> : null}
-    </View>
+    <>
+      <View style={styles.container}>
+        <Input style={styles.input} mode="outlined" {...props} />
+        {errorText ? <Text style={styles.error}>{errorText}</Text> : null}
+      </View>
+    </>
   );
 };
 
@@ -29,7 +24,7 @@ const styleSheet = ({theme}: {theme: MD3Theme}) =>
       marginVertical: 12,
     },
     input: {
-      backgroundColor: theme.colors.surface,
+      backgroundColor: theme.colors.background,
     },
     error: {
       fontSize: 14,
@@ -40,3 +35,13 @@ const styleSheet = ({theme}: {theme: MD3Theme}) =>
   });
 
 export default memo(TextInput);
+
+//   outline: string;
+//   outlineVariant: string;
+//   inverseSurface: string;
+//   inverseOnSurface: string;
+//   inversePrimary: string;
+//   shadow: string;
+//   scrim: string;
+//   backdrop: string;
+//   elevation: MD3ElevationColors;

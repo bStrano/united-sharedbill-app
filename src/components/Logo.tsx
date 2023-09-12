@@ -1,16 +1,9 @@
+import logo from '@assets/images/logos/logo.png';
 import React, {memo} from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {Image, ImageStyle, StyleProp} from 'react-native';
 
-const Logo = () => (
-  <Image source={require('../../assets/logo.png')} style={styles.image} />
+const Logo = ({styles}: {styles?: StyleProp<ImageStyle>}) => (
+  <Image source={logo} style={styles} />
 );
-
-const styles = StyleSheet.create({
-  image: {
-    width: 128,
-    height: 128,
-    marginVertical: 12,
-  },
-});
 
 export default memo(Logo);

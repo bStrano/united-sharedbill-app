@@ -1,16 +1,18 @@
-import React, {memo, useMemo, useState} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import TextInput from '../../../components/TextInput';
-import Background from '../../../components/Background';
-import Header from '../../../components/Header';
-import {Navigation} from 'types/Naviation';
-import {LoginTypeEnum, useSession} from '@providers/SessionProvider';
-import {MD3Theme, Text} from 'react-native-paper';
-import {FormattedMessage} from 'react-intl';
-import {MESSAGES} from '@constants/messages-ids';
-import {LoginSocialForm} from './components/SocialLogin/LoginSocialForm';
-import {useAppTheme} from '../../../../App';
 import Button from '@components/Button';
+import Logo from '@components/Logo';
+import {MESSAGES} from '@constants/messages-ids';
+import {LoginTypeEnum, useSession} from '@providers/SessionProvider';
+import React, {memo, useMemo, useState} from 'react';
+import {FormattedMessage} from 'react-intl';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Card, MD3Theme, Text} from 'react-native-paper';
+import {Navigation} from 'types/Naviation';
+import {useAppTheme} from '../../../../App';
+
+import TextInput from '../../../components/TextInput';
+import {LoginSocialForm} from './components/SocialLogin/LoginSocialForm';
+import BackgroundLogin from '@components/BackgroundLogin';
+import LoginButton from '@components/LoginButton';
 
 type Props = {
   navigation: Navigation;
@@ -42,73 +44,88 @@ const LoginScreen = ({navigation}: Props) => {
   };
 
   return (
-    <Background style={styles.container}>
-      <Header>
-        {' '}
-        <FormattedMessage id={MESSAGES.ids.TEXT_WELCOME} />
-      </Header>
-      <Text>
-        <FormattedMessage id={MESSAGES.ids.TEXT_WELCOME_SUBTITLE} />
+    <BackgroundLogin style={styles.container}>
+      <Logo styles={styles.logo} />
+
+      <Text style={styles.slogan}>
+        <FormattedMessage id={MESSAGES.ids.SLOGAN} />
       </Text>
-      <TextInput
-        label={<FormattedMessage id={MESSAGES.ids.EMAIL_INPUT_PLACEHOLDER} />}
-        returnKeyType="next"
-        value={email.value}
-        onChangeText={text => setEmail({value: text, error: ''})}
-        error={!!email.error}
-        errorText={email.error}
-        autoCapitalize="none"
-        autoComplete="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-      />
 
-      <TextInput
-        label={
-          <FormattedMessage id={MESSAGES.ids.PASSWORD_INPUT_PLACEHOLDER} />
-        }
-        returnKeyType="done"
-        value={password.value}
-        onChangeText={text => setPassword({value: text, error: ''})}
-        error={!!password.error}
-        errorText={password.error}
-        secureTextEntry
-      />
+      <Card style={styles.loginSection}>
+        <TextInput
+          label={<FormattedMessage id={MESSAGES.ids.EMAIL_INPUT_PLACEHOLDER} />}
+          returnKeyType="next"
+          value={email.value}
+          onChangeText={text => setEmail({value: text, error: ''})}
+          error={!!email.error}
+          errorText={email.error}
+          autoCapitalize="none"
+          autoComplete="email"
+          textContentType="emailAddress"
+          keyboardType="email-address"
+        />
 
-      <View style={styles.forgotPassword}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('ForgotPasswordScreen')}>
-          <Text style={styles.label}>
-            <FormattedMessage id={MESSAGES.ids.BTN_FORGOT_PASSWORD} />
-          </Text>
-        </TouchableOpacity>
-      </View>
+        <TextInput
+          label={
+            <FormattedMessage id={MESSAGES.ids.PASSWORD_INPUT_PLACEHOLDER} />
+          }
+          returnKeyType="done"
+          value={password.value}
+          onChangeText={text => setPassword({value: text, error: ''})}
+          error={!!password.error}
+          errorText={password.error}
+          secureTextEntry
+        />
 
-      <Button id={MESSAGES.ids.BTN_LOGIN} onPress={_onLoginPressed} />
+        <View style={styles.forgotPassword}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ForgotPasswordScreen')}>
+            <Text style={styles.label}>
+              <FormattedMessage id={MESSAGES.ids.BTN_FORGOT_PASSWORD} />
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-      <LoginSocialForm />
+        <LoginButton id={MESSAGES.ids.BTN_LOGIN} onPress={_onLoginPressed} />
+
+        <LoginSocialForm />
+      </Card>
+
       <View style={styles.row}>
         <Text style={styles.label}>
           <FormattedMessage id={MESSAGES.ids.LABEL_LOGIN_REGISTER} />
         </Text>
         <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
           <Text style={styles.link}>
-            {' '}
             <FormattedMessage id={MESSAGES.ids.BTN_LOGIN_REGISTER} />
           </Text>
         </TouchableOpacity>
       </View>
-    </Background>
+    </BackgroundLogin>
   );
 };
 
 const styleSheet = (theme: MD3Theme) =>
   StyleSheet.create({
+    logo: {
+      height: 70,
+      resizeMode: 'contain',
+      marginBottom: 20,
+    },
+    slogan: {
+      color: '#FFF',
+      fontFamily: 'monospace',
+    },
     container: {
-      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
       padding: 20,
+    },
+    loginSection: {
+      width: '100%',
+      borderRadius: 20,
+      padding: 30,
+      marginVertical: 24,
     },
     forgotPassword: {
       width: '100%',
@@ -117,7 +134,6 @@ const styleSheet = (theme: MD3Theme) =>
     },
     row: {
       flexDirection: 'row',
-      marginTop: 4,
     },
     label: {
       color: theme.colors.secondary,
@@ -125,6 +141,7 @@ const styleSheet = (theme: MD3Theme) =>
     link: {
       fontWeight: 'bold',
       color: theme.colors.primary,
+      marginLeft: 4,
     },
   });
 

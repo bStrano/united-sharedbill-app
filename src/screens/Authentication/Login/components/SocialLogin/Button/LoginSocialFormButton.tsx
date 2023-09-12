@@ -48,14 +48,11 @@ const styleSheet = (theme: AppTheme) =>
       alignItems: 'center',
       width: 55,
       height: 55,
-      borderRadius: 4,
-      borderColor: 'grey',
-      backgroundColor: theme.colors.card,
       margin: 15,
       padding: 20,
     },
     icon: {
-      width: 30,
-      height: 30,
+      width: 35,
+      height: 35,
     },
   });

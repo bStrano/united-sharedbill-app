@@ -18,17 +18,15 @@ const WelcomeScreen = ({navigation}: Props) => (
     <Paragraph>
       The easiest way to start with your amazing application.
     </Paragraph>
-    <Button mode="contained" onPress={() => navigation.navigate('LoginScreen')}>
-      Login
-    </Button>
-    <Button mode="contained" onPress={() => navigation.navigate('LoginScreen')}>
+    <Button id={'welcome'} onPress={() => navigation.navigate('LoginScreen')} />
+    <Button id={'welcome'} onPress={() => navigation.navigate('LoginScreen')}>
       Login With Google
     </Button>
-    <Button mode="contained" onPress={() => navigation.navigate('LoginScreen')}>
+    <Button id={'welcome'} onPress={() => navigation.navigate('LoginScreen')}>
       Login With Apple
     </Button>
     <Button
-      mode="outlined"
+      id={'welcome'}
       onPress={() => navigation.navigate('RegisterScreen')}>
       Sign Up
     </Button>

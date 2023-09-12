@@ -1,17 +1,15 @@
-import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import SessionProvider from './src/providers/SessionProvider';
-import AppContent from './src/AppContent';
+import React from 'react';
 import {Provider as PaperProvider, useTheme} from 'react-native-paper';
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import {CombinedDarkTheme, CombinedLightTheme} from '@constants/theme';
-import {IntlProvider} from 'react-intl';
+import AppContent from './src/AppContent';
+import SessionProvider from './src/providers/SessionProvider';
+import {DarkTheme} from '@constants/theme';
 import {useLocale} from '@hooks/useLocale';
 import {GoogleProvider} from '@providers/GoogleProvider';
+import {IntlProvider} from 'react-intl';
 import Toast from 'react-native-toast-message';
 import {QueryClient, QueryClientProvider} from 'react-query';
-export type AppTheme = typeof CombinedDarkTheme;
+export type AppTheme = typeof DarkTheme;
 
 export const useAppTheme = () => useTheme<AppTheme>();
 function App(): JSX.Element {
@@ -21,12 +19,12 @@ function App(): JSX.Element {
 
   // const isDarkMode = useColorScheme() === 'dark';
   return (
-    <PaperProvider theme={CombinedDarkTheme}>
+    <PaperProvider theme={DarkTheme}>
       <Toast />
       <QueryClientProvider client={queryClient}>
         <IntlProvider locale={deviceLanguage} messages={messages}>
           <GoogleProvider>
-            <NavigationContainer theme={CombinedDarkTheme}>
+            <NavigationContainer theme={DarkTheme}>
               <SessionProvider>
                 <AppContent />
               </SessionProvider>

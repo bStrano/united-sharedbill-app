@@ -1,10 +1,6 @@
 import React, {memo, useMemo} from 'react';
-import {
-  StyleSheet,
-  KeyboardAvoidingView,
-  ViewProps,
-} from 'react-native';
-import { AppTheme, useAppTheme } from "../../App";
+import {StyleSheet, KeyboardAvoidingView, ViewProps} from 'react-native';
+import {AppTheme, useAppTheme} from '../../App';
 
 interface Props extends ViewProps {
   children: React.ReactNode;
@@ -27,7 +23,6 @@ const styleSheet = (theme: AppTheme) =>
     background: {
       flex: 1,
       backgroundColor: theme.colors.background,
-
     },
   });
 

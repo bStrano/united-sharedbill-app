@@ -21,6 +21,7 @@ function GroupItem({item}: GroupItemPropsInterface) {
   return (
     <Card
       style={styles.cardContainer}
+      mode="elevated"
       onPress={() =>
         navigation.navigate('GroupStack', {screen: 'GroupDashboard'})
       }>
