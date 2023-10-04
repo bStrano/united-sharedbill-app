@@ -1,12 +1,12 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import LoginScreen from '../screens/Authentication/Login/LoginScreen';
-import RegisterScreen from '../screens/Authentication/RegisterScreen';
-import ForgotPasswordScreen from '../screens/Authentication/ForgotPasswordScreen';
-import WelcomeScreen from '../screens/Authentication/WelcomeScreen';
-import {FormProvider} from '@providers/FormProvider';
-import {UserRegisterInterface} from 'types/UserRegisterInterface';
-import RegisterUserProvider from '@providers/RegisterUserProvider';
-import React from 'react';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import LoginScreen from "../screens/Authentication/Login/LoginScreen";
+import RegisterScreen from "../screens/Authentication/RegisterScreen";
+import ForgotPasswordScreen from "../screens/Authentication/ForgotPasswordScreen";
+import WelcomeScreen from "../screens/Authentication/WelcomeScreen";
+import { FormProvider } from "@providers/FormProvider";
+import { UserRegisterInterface } from "types/UserRegisterInterface";
+import RegisterUserProvider from "@providers/RegisterUserProvider";
+import React from "react";
 
 const Stack = createNativeStackNavigator();
 export default function AuthenticationStack() {
@@ -15,7 +15,7 @@ export default function AuthenticationStack() {
       <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="RegisterScreen"
@@ -26,17 +26,17 @@ export default function AuthenticationStack() {
             </RegisterUserProvider>
           </FormProvider>
         )}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="ForgotPasswordScreen"
         component={ForgotPasswordScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="HomeScreen"
         component={WelcomeScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
