@@ -1,45 +1,55 @@
-import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
-import {Card, Text} from 'react-native-paper';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {GroupListItemInterface} from '../../../../types/GroupItemInterface';
-import {useNavigation} from '@react-navigation/native';
-import {useAppTheme} from '../../../../../App';
+import React, { useMemo } from "react";
+import { Image, StyleSheet, View } from "react-native";
+import { Card, MD3Theme, Text } from "react-native-paper";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+
+import { useNavigation } from "@react-navigation/native";
+import { useAppTheme } from "../../../../../App";
+import { GroupInterface } from "libs/united-sharedbill-core/src/modules/groups/entities/group.interface";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { GroupStackParamList } from "@navigations/GroupStack";
+import { DynamicSvgComponent } from "@components/Icon/Icon";
 
 interface GroupItemPropsInterface {
-  item: GroupListItemInterface;
+  item: GroupInterface;
 }
 
-function GroupItem({item}: GroupItemPropsInterface) {
-  const navigation = useNavigation();
+function GroupItem({ item }: GroupItemPropsInterface) {
+  const navigation = useNavigation<StackNavigationProp<GroupStackParamList>>();
   const theme = useAppTheme();
-
-  const _onPress = () => {
-    navigation.navigate('GroupStack');
-  };
+  const styles = useMemo(() => styleSheet(theme), [theme]);
+  // const _onPress = () => {
+  //   navigation.navigate("GroupStack");
+  // };
 
   return (
     <Card
       style={styles.cardContainer}
       mode="elevated"
-      onPress={() =>
-        navigation.navigate('GroupStack', {screen: 'GroupDashboard'})
-      }>
+      onPress={() => navigation.navigate("GroupDashboard")}
+    >
       <Card.Content style={styles.innerContainer}>
-        <Image
+        {/* <Image
           style={styles.image}
           source={{
-            uri: 'https://snack-web-player.s3.us-west-1.amazonaws.com/v2/46/static/media/react-native-logo.79778b9e.png',
+            uri: "https://snack-web-player.s3.us-west-1.amazonaws.com/v2/46/static/media/react-native-logo.79778b9e.png",
           }}
-        />
+        /> */}
+
+        <View style={styles.iconContainer}>
+          <DynamicSvgComponent name="key" width={46} height={46} color="#FFF" />
+        </View>
+
         <View style={styles.contentContainer}>
           <View style={styles.titleContainer}>
-            <Text variant="titleMedium">{item.name}</Text>
+            <Text variant="titleMedium" numberOfLines={1}>
+              {item.title}
+            </Text>
             <View style={styles.participantContainer}>
               <MaterialIcons
-                name={'groups'}
+                name={"groups"}
                 size={20}
-                color={theme.colors.text}
+                color={theme.colors.onBackground}
               />
               <Text style={styles.participantText} variant="labelSmall">
                 {item.participantsCount}
@@ -55,29 +65,37 @@ function GroupItem({item}: GroupItemPropsInterface) {
   );
 }
 
-const styles = StyleSheet.create({
-  cardContainer: {
-    margin: 10,
-    marginVertical: 5,
-  },
-  imageSection: {},
-  innerContainer: {
-    flexDirection: 'row',
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  participantContainer: {flexDirection: 'row', alignItems: 'center'},
-  participantText: {
-    paddingLeft: 6,
-  },
-  contentContainer: {
-    flex: 1,
-    paddingHorizontal: 10,
-    paddingRight: 5,
-  },
-  image: {height: 60, width: 60},
-});
+const styleSheet = (theme: MD3Theme) =>
+  StyleSheet.create({
+    cardContainer: {
+      margin: 10,
+      marginVertical: 5,
+    },
+    imageSection: {},
+    innerContainer: {
+      flexDirection: "row",
+    },
+    titleContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    participantContainer: { flexDirection: "row", alignItems: "center" },
+    participantText: {
+      paddingLeft: 6,
+    },
+    contentContainer: {
+      flex: 1,
+      paddingHorizontal: 10,
+      paddingRight: 5,
+    },
+    iconContainer: {
+      height: 60,
+      width: 60,
+      backgroundColor: theme.colors.elevation.level2,
+      borderRadius: 10,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  });
 export default GroupItem;

@@ -1,4 +1,5 @@
 import { GroupAPI } from "@apis/GroupAPI";
+import { GroupInterface } from "libs/united-sharedbill-core/src/modules/groups/entities/group.interface";
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
 
@@ -7,7 +8,7 @@ interface IListGroupProviderProps {
 }
 
 interface ListGroupContextInterface {
-  groups: any;
+  groups: GroupInterface[];
   isLoading: boolean;
 }
 
@@ -19,7 +20,7 @@ export function ListGroupProvider(props: IListGroupProviderProps) {
   return (
     <ListGroupContext.Provider
       value={{
-        groups: data,
+        groups: data?.data || [],
         isLoading,
       }}
     >

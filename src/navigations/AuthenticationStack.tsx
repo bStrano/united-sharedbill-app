@@ -8,7 +8,14 @@ import { UserRegisterInterface } from "types/UserRegisterInterface";
 import RegisterUserProvider from "@providers/RegisterUserProvider";
 import React from "react";
 
-const Stack = createNativeStackNavigator();
+export type AuthenticationStackParamList = {
+  LoginScreen: undefined;
+  RegisterScreen: undefined;
+  ForgotPasswordScreen: undefined;
+  HomeScreen: undefined;
+};
+
+const Stack = createNativeStackNavigator<AuthenticationStackParamList>();
 export default function AuthenticationStack() {
   return (
     <Stack.Navigator>

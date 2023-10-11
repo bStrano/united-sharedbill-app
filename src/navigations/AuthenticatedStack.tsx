@@ -7,7 +7,14 @@ import { FormProvider } from "@providers/FormProvider";
 import { GroupRegister } from "types/GroupRegister";
 import GroupInviteFriends from "@screens/Groups/InviteFriends/GroupInviteFriends";
 
-const Stack = createNativeStackNavigator();
+export type AuthenticatedStackParamList = {
+  CoreNavigator: undefined;
+  GroupStack: undefined;
+  GroupRegister: undefined;
+  GroupInviteFriends: undefined;
+};
+const Stack = createNativeStackNavigator<AuthenticatedStackParamList>();
+
 export default function AuthenticatedStack() {
   return (
     <Stack.Navigator>

@@ -1,8 +1,8 @@
-import React, {useMemo} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {AppTheme, useAppTheme} from '../../App';
-import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/Entypo';
+import React, { useMemo } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { AppTheme, useAppTheme } from "../../App";
+import LinearGradient from "react-native-linear-gradient";
+import Icon from "react-native-vector-icons/Entypo";
 
 interface IFABProps {
   onPress(): void;
@@ -14,7 +14,7 @@ function FAB(props: IFABProps) {
   return (
     <TouchableOpacity onPress={props.onPress}>
       <LinearGradient colors={theme.colors.gradient} style={styles.container}>
-        <Icon name={'plus'} color={theme.colors.text} size={26} />
+        <Icon name={"plus"} color={theme.colors.onBackground} size={26} />
       </LinearGradient>
     </TouchableOpacity>
   );
@@ -23,14 +23,14 @@ function FAB(props: IFABProps) {
 const styleSheet = (theme: AppTheme) =>
   StyleSheet.create({
     container: {
-      height: 65,
-      width: 65,
-      borderRadius: 20,
-      position: 'absolute',
+      height: 52,
+      width: 52,
+      borderRadius: 14,
+      position: "absolute",
       bottom: 15,
       right: 15,
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: "center",
+      alignItems: "center",
     },
   });
 export default FAB;
