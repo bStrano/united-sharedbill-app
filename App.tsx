@@ -9,6 +9,7 @@ import {GoogleProvider} from '@providers/GoogleProvider';
 import {IntlProvider} from 'react-intl';
 import Toast from 'react-native-toast-message';
 import {QueryClient, QueryClientProvider} from 'react-query';
+import { SafeAreaView } from "react-native";
 export type AppTheme = typeof DarkTheme;
 
 export const useAppTheme = () => useTheme<AppTheme>();
@@ -26,7 +27,9 @@ function App(): JSX.Element {
           <GoogleProvider>
             <NavigationContainer theme={DarkTheme}>
               <SessionProvider>
-                <AppContent />
+                <SafeAreaView style={{flex: 1, backgroundColor: DarkTheme.colors.background}}>
+                  <AppContent />
+                </SafeAreaView>
               </SessionProvider>
             </NavigationContainer>
           </GoogleProvider>
