@@ -1,20 +1,27 @@
-import React, {useMemo} from 'react';
-import {StyleSheet, View} from 'react-native';
-import Background from '@components/Background';
-import {FormattedMessage} from 'react-intl';
-import {MESSAGES} from '@constants/messages-ids';
-import ControlledTextInput from '@components/ControlledTextInput';
-import ImageSelector from '@components/ImageSelector';
-import Button from '@components/Button';
-import {useMutation} from 'react-query';
-import {GroupRegister} from 'types/GroupRegister';
-import {useAppForm} from '@providers/FormProvider';
-import Timeline from '@screens/Groups/Register/components/Timeline';
-import {CommonActions, useNavigation} from '@react-navigation/native';
+import React, { useMemo } from "react";
+import { StyleSheet, View } from "react-native";
+import Background from "@components/Background";
+import { FormattedMessage } from "react-intl";
+import { MESSAGES } from "@constants/messages-ids";
+import ControlledTextInput from "@components/ControlledTextInput";
+import ImageSelector from "@components/ImageSelector";
+import Button from "@components/Button";
+import { useMutation } from "react-query";
+import { GroupRegister } from "types/GroupRegister";
+import { FormProvider, useAppForm } from "@providers/FormProvider";
+import Timeline from "@screens/Groups/Register/components/Timeline";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 
 interface IGroupRegisterScreenProps {}
 
-function GroupRegisterScreen(props: IGroupRegisterScreenProps) {
+function GroupRegisterScreen() {
+  return (
+    <FormProvider formClass={GroupRegister}>
+      <GroupRegisterScreenContent />
+    </FormProvider>
+  );
+}
+function GroupRegisterScreenContent(props: IGroupRegisterScreenProps) {
   const formContext = useAppForm();
   const styles = useMemo(() => styleSheet(), []);
   const navigation = useNavigation();
@@ -23,7 +30,7 @@ function GroupRegisterScreen(props: IGroupRegisterScreenProps) {
     async (groupRegister: GroupRegister) => {
       // return GroupAPI.register(groupRegister);
       console.log(groupRegister);
-    },
+    }
   );
 
   const onSubmit = () => {
@@ -34,11 +41,11 @@ function GroupRegisterScreen(props: IGroupRegisterScreenProps) {
         CommonActions.reset({
           index: 2,
           routes: [
-            {name: 'CoreNavigator'},
-            {name: 'GroupStack'},
-            {name: 'GroupInviteFriends'},
+            { name: "CoreNavigator" },
+            { name: "GroupStack" },
+            { name: "GroupInviteFriends" },
           ],
-        }),
+        })
       );
     });
   };
@@ -46,12 +53,12 @@ function GroupRegisterScreen(props: IGroupRegisterScreenProps) {
   return (
     <Background style={styles.container}>
       <Timeline />
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <View style={styles.contentContainer}>
-          <ImageSelector id={'image'} />
-          <View style={{flex: 1, marginHorizontal: 10}}>
+          <ImageSelector id={"image"} />
+          <View style={{ flex: 1, marginHorizontal: 10 }}>
             <ControlledTextInput
-              id={'name'}
+              id={"name"}
               label={<FormattedMessage id={MESSAGES.ids.INPUT_GROUP_NAME} />}
               returnKeyType="next"
               autoCapitalize="none"
@@ -60,12 +67,12 @@ function GroupRegisterScreen(props: IGroupRegisterScreenProps) {
         </View>
 
         <ControlledTextInput
-          id={'description'}
+          id={"description"}
           label={<FormattedMessage id={MESSAGES.ids.INPUT_GROUP_DESCRIPTION} />}
           returnKeyType="next"
-          style={{marginHorizontal: 10}}
+          style={{ marginHorizontal: 10 }}
           multiline={true}
-          textAlignVertical={'top'}
+          textAlignVertical={"top"}
           numberOfLines={4}
         />
       </View>
@@ -78,15 +85,15 @@ const styleSheet = () =>
   StyleSheet.create({
     container: {
       flex: 1,
-      width: '100%',
+      width: "100%",
       padding: 10,
       marginBottom: 30,
     },
     contentContainer: {
       margin: 10,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
     },
   });
 

@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
-import {Alert, Share, View} from 'react-native';
-import Background from '@components/Background';
-import {Card, List, Text} from 'react-native-paper';
-import {useAppTheme} from '../../../../App';
-import Button from '@components/Button';
-import {MESSAGES} from '@constants/messages-ids';
-import {FormattedMessage} from 'react-intl';
-import {GroupInviteFriendsScanQRCode} from '@screens/Groups/InviteFriends/ScanQRCode/GroupInviteFriendsScanQRCode';
-import {CommonActions, useNavigation} from '@react-navigation/native';
+import React, { useState } from "react";
+import { Alert, Share, View } from "react-native";
+import Background from "@components/Background";
+import { Card, List, Text } from "react-native-paper";
+import { useAppTheme } from "../../../../App";
+import Button from "@components/Button";
+import { MESSAGES } from "@constants/messages-ids";
+import { FormattedMessage } from "react-intl";
+import { GroupInviteFriendsScanQRCode } from "@screens/Groups/InviteFriends/ScanQRCode/GroupInviteFriendsScanQRCode";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 
 interface IGroupInviteFriendsProps {}
 
@@ -18,7 +18,7 @@ function GroupInviteFriends(props: IGroupInviteFriendsProps) {
     try {
       const result = await Share.share({
         message:
-          'React Native | A framework for building native apps using React',
+          "React Native | A framework for building native apps using React",
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -44,8 +44,8 @@ function GroupInviteFriends(props: IGroupInviteFriendsProps) {
     navigation.dispatch(
       CommonActions.reset({
         index: 1,
-        routes: [{name: 'CoreNavigator'}, {name: 'GroupStack'}],
-      }),
+        routes: [{ name: "CoreNavigator" }, { name: "GroupStack" }],
+      })
     );
   };
 
@@ -55,30 +55,32 @@ function GroupInviteFriends(props: IGroupInviteFriendsProps) {
         flex: 1,
         marginHorizontal: 15,
         marginVertical: 30,
-        backgroundColor: 'red',
-      }}>
-      <View style={{flex: 1}}>
-        <Text variant={'titleLarge'}>
+        backgroundColor: "red",
+      }}
+    >
+      <View style={{ flex: 1 }}>
+        <Text variant={"titleLarge"}>
           <FormattedMessage id={MESSAGES.ids.LABEL_INVITE_FRIENDS} />
         </Text>
-        <Text variant={'labelSmall'}>
+        <Text variant={"labelSmall"}>
           <FormattedMessage
             id={MESSAGES.ids.LABEL_DESCRIPTION_INVITE_FRIENDS}
           />
         </Text>
 
-        <View style={{marginBottom: 15, marginTop: 30}}>
-          <Text variant={'labelSmall'} style={{marginBottom: 10}}>
+        <View style={{ marginBottom: 15, marginTop: 30 }}>
+          <Text variant={"labelSmall"} style={{ marginBottom: 10 }}>
             <FormattedMessage id={MESSAGES.ids.LABEL_GROUP_CODE} />
           </Text>
           <Card
             style={{
               height: 35,
               borderRadius: 5,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Text variant={'titleLarge'}> A B C D 7 8 </Text>
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text variant={"titleLarge"}> A B C D 7 8 </Text>
           </Card>
         </View>
 
@@ -87,7 +89,7 @@ function GroupInviteFriends(props: IGroupInviteFriendsProps) {
             title={
               <FormattedMessage id={MESSAGES.ids.OPTION_INVITE_FRIENDS_APP} />
             }
-            background={'red'}
+            background={"red"}
             centered={true}
             description={
               <FormattedMessage
@@ -95,10 +97,10 @@ function GroupInviteFriends(props: IGroupInviteFriendsProps) {
               />
             }
             onPress={onFriends}
-            left={props => (
+            left={(props) => (
               <List.Icon {...props} icon="human-greeting-variant" />
             )}
-            right={props => <List.Icon {...props} icon={'chevron-right'} />}
+            right={(props) => <List.Icon {...props} icon={"chevron-right"} />}
           />
           <List.Item
             title={
@@ -111,8 +113,8 @@ function GroupInviteFriends(props: IGroupInviteFriendsProps) {
             }
             onPress={onShare}
             centered={true}
-            left={props => <List.Icon {...props} icon="share" />}
-            right={props => <List.Icon {...props} icon={'chevron-right'} />}
+            left={(props) => <List.Icon {...props} icon="share" />}
+            right={(props) => <List.Icon {...props} icon={"chevron-right"} />}
           />
 
           <List.Item
@@ -125,8 +127,8 @@ function GroupInviteFriends(props: IGroupInviteFriendsProps) {
               />
             }
             onPress={onScan}
-            left={props => <List.Icon {...props} icon="qrcode" />}
-            right={props => <List.Icon {...props} icon={'chevron-right'} />}
+            left={(props) => <List.Icon {...props} icon="qrcode" />}
+            right={(props) => <List.Icon {...props} icon={"chevron-right"} />}
           />
         </List.Section>
       </View>

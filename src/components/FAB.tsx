@@ -12,7 +12,7 @@ function FAB(props: IFABProps) {
   const theme = useAppTheme();
   const styles = useMemo(() => styleSheet(theme), [theme]);
   return (
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity onPress={props.onPress} style={styles.touchableOpacity}>
       <LinearGradient colors={theme.colors.gradient} style={styles.container}>
         <Icon name={"plus"} color={theme.colors.onBackground} size={26} />
       </LinearGradient>
@@ -27,10 +27,15 @@ const styleSheet = (theme: AppTheme) =>
       width: 52,
       borderRadius: 14,
       position: "absolute",
-      bottom: 15,
-      right: 15,
       justifyContent: "center",
       alignItems: "center",
+    },
+    touchableOpacity: {
+      height: 52,
+      width: 52,
+      bottom: 15,
+      right: 15,
+      position: "absolute",
     },
   });
 export default FAB;

@@ -5,14 +5,25 @@ import Headline from "../../../components/Headline";
 import Background from "../../../components/Background";
 import FAB from "@components/FAB";
 import { useNavigation } from "@react-navigation/native";
-import { useListGroupContext } from "@providers/group/ListGroupProvider";
+import {
+  ListGroupProvider,
+  useListGroupContext,
+} from "@providers/group/ListGroupProvider";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { AuthenticatedStackParamList } from "@navigations/AuthenticatedStack";
 
 interface GroupScreenPropsInterface {}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 function GroupListScreen(props: GroupScreenPropsInterface) {
+  return (
+    <ListGroupProvider>
+      <GroupListScreenWithContent />
+    </ListGroupProvider>
+  );
+}
+function GroupListScreenWithContent(props: GroupScreenPropsInterface) {
   const { groups } = useListGroupContext();
   const navigation =
     useNavigation<StackNavigationProp<AuthenticatedStackParamList>>();

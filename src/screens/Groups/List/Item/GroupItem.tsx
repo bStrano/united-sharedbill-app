@@ -9,13 +9,15 @@ import { GroupInterface } from "libs/united-sharedbill-core/src/modules/groups/e
 import { StackNavigationProp } from "@react-navigation/stack";
 import { GroupStackParamList } from "@navigations/GroupStack";
 import { DynamicSvgComponent } from "@components/Icon/Icon";
+import { AuthenticatedStackParamList } from "@navigations/AuthenticatedStack";
 
 interface GroupItemPropsInterface {
   item: GroupInterface;
 }
 
 function GroupItem({ item }: GroupItemPropsInterface) {
-  const navigation = useNavigation<StackNavigationProp<GroupStackParamList>>();
+  const navigation =
+    useNavigation<StackNavigationProp<AuthenticatedStackParamList>>();
   const theme = useAppTheme();
   const styles = useMemo(() => styleSheet(theme), [theme]);
   // const _onPress = () => {
@@ -26,7 +28,7 @@ function GroupItem({ item }: GroupItemPropsInterface) {
     <Card
       style={styles.cardContainer}
       mode="elevated"
-      onPress={() => navigation.navigate("GroupDashboard")}
+      onPress={() => navigation.navigate("GroupStack")}
     >
       <Card.Content style={styles.innerContainer}>
         {/* <Image

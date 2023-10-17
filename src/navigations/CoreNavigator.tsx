@@ -24,13 +24,7 @@ export default function CoreNavigator() {
     >
       <Tab.Screen
         name="GroupList"
-        component={() => {
-          return (
-            <ListGroupProvider>
-              <GroupListScreen />
-            </ListGroupProvider>
-          );
-        }}
+        component={GroupListScreen}
         options={{
           tabBarLabel: "Groups",
           tabBarIcon: ({ color }) => (

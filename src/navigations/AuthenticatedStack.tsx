@@ -3,8 +3,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CoreNavigator from "./CoreNavigator";
 import GroupStack from "./GroupStack";
 import GroupRegisterScreen from "@screens/Groups/Register/GroupRegisterScreen";
-import { FormProvider } from "@providers/FormProvider";
-import { GroupRegister } from "types/GroupRegister";
 import GroupInviteFriends from "@screens/Groups/InviteFriends/GroupInviteFriends";
 
 export type AuthenticatedStackParamList = {
@@ -30,20 +28,12 @@ export default function AuthenticatedStack() {
       />
       <Stack.Screen
         name="GroupRegister"
-        component={() => {
-          return (
-            <FormProvider formClass={GroupRegister}>
-              <GroupRegisterScreen />
-            </FormProvider>
-          );
-        }}
+        component={GroupRegisterScreen}
         options={{ headerShown: true, title: "Novo grupo" }}
       />
       <Stack.Screen
         name="GroupInviteFriends"
-        component={() => {
-          return <GroupInviteFriends />;
-        }}
+        component={GroupInviteFriends}
         options={{ headerShown: false, title: "Novo grupo" }}
       />
     </Stack.Navigator>
