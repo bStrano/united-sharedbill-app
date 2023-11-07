@@ -1,43 +1,39 @@
-import React, {memo, useMemo} from 'react';
-import {View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
-import Logo from '../../components/Logo';
-import Button from '../../components/Button';
-import Background from '../../components/Background';
-import Header from '../../components/Header';
-import {Navigation} from 'types/Naviation';
-import {MD3Theme, Text, useTheme} from 'react-native-paper';
-import {FormattedMessage} from 'react-intl';
-import {MESSAGES} from '@constants/messages-ids';
-import ControlledTextInput from '@components/ControlledTextInput';
-import {useAppForm} from '@providers/FormProvider';
-import {useRegisterUserContext} from '@providers/RegisterUserProvider';
-import {UserRegisterInterface} from 'types/UserRegisterInterface';
+import React, { memo, useMemo } from "react";
+import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import Logo from "../../components/Logo";
+import Button from "../../components/Button";
+import Background from "../../components/Background";
+import Header from "../../components/Header";
+import { Navigation } from "types/Naviation";
+import { MD3Theme, Text, useTheme } from "react-native-paper";
+import { FormattedMessage } from "react-intl";
+import { MESSAGES } from "@constants/messages-ids";
+import ControlledTextInput from "@components/ControlledTextInput";
+import { useAppForm } from "@providers/FormProvider";
+import { useRegisterUserContext } from "@providers/RegisterUserProvider";
+import { UserRegister } from "types/UserRegisterInterface";
 
 type Props = {
   navigation: Navigation;
 };
 
-const RegisterScreen = ({navigation}: Props) => {
+const RegisterScreen = ({ navigation }: Props) => {
   const formContext = useAppForm();
   const theme = useTheme();
   const styles = useMemo(() => styleSheet(theme), [theme]);
   const registerUserContext = useRegisterUserContext();
 
   const onSubmit = () => {
-    console.log('OKJ');
     formContext.onSubmit(
-      async (data: UserRegisterInterface) =>
-        await registerUserContext.registerUserMutation.mutate(data),
+      async (data: UserRegister) =>
+        await registerUserContext.registerUserMutation.mutate(data)
     );
-    console.log('OK2');
-
-    // console.log(data);
   };
 
   return (
     <Background style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
           <Logo />
         </View>
 
@@ -46,13 +42,13 @@ const RegisterScreen = ({navigation}: Props) => {
         </Header>
 
         <ControlledTextInput
-          id={'name'}
+          id={"name"}
           label={<FormattedMessage id={MESSAGES.ids.NAME_INPUT_PLACEHOLDER} />}
           returnKeyType="next"
         />
 
         <ControlledTextInput
-          id={'email'}
+          id={"email"}
           label={<FormattedMessage id={MESSAGES.ids.EMAIL_INPUT_PLACEHOLDER} />}
           returnKeyType="next"
           autoCapitalize="none"
@@ -65,7 +61,7 @@ const RegisterScreen = ({navigation}: Props) => {
           label={
             <FormattedMessage id={MESSAGES.ids.PASSWORD_INPUT_PLACEHOLDER} />
           }
-          id={'password'}
+          id={"password"}
           returnKeyType="next"
           secureTextEntry
         />
@@ -76,7 +72,7 @@ const RegisterScreen = ({navigation}: Props) => {
               id={MESSAGES.ids.CONFIRM_PASSWORD_INPUT_PLACEHOLDER}
             />
           }
-          id={'confirmPassword'}
+          id={"confirmPassword"}
           returnKeyType="done"
           secureTextEntry
         />
@@ -90,9 +86,9 @@ const RegisterScreen = ({navigation}: Props) => {
           <Text style={styles.label}>
             <FormattedMessage id={MESSAGES.ids.LABEL_ALREADY_REGISTERED} />
           </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+          <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
             <Text style={styles.link}>
-              {' '}
+              {" "}
               <FormattedMessage id={MESSAGES.ids.BTN_LOGIN} />
             </Text>
           </TouchableOpacity>
@@ -106,7 +102,7 @@ const styleSheet = (theme: MD3Theme) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      width: '100%',
+      width: "100%",
       paddingHorizontal: 20,
     },
     label: {
@@ -116,11 +112,11 @@ const styleSheet = (theme: MD3Theme) =>
       marginTop: 24,
     },
     row: {
-      flexDirection: 'row',
+      flexDirection: "row",
       marginTop: 4,
     },
     link: {
-      fontWeight: 'bold',
+      fontWeight: "bold",
       color: theme.colors.primary,
     },
   });

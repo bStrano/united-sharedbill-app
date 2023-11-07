@@ -1,41 +1,47 @@
-import React, { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
 import Background from "@components/Background";
-import { FormattedMessage } from "react-intl";
-import { MESSAGES } from "@constants/messages-ids";
-import ControlledTextInput from "@components/ControlledTextInput";
-import ImageSelector from "@components/ImageSelector";
 import Button from "@components/Button";
+import ControlledTextInput from "@components/ControlledTextInput";
+import IconsModalSelect from "@components/Modals/IconsModalSelect/IconsModalSelect";
+import { MESSAGES } from "@constants/messages-ids";
+import { FormProvider, useAppForm } from "@providers/FormProvider";
+import GroupRegisterProvider, {
+  useGroupRegisterContext,
+} from "@providers/GroupRegisterProvider";
+import { CommonActions, useNavigation } from "@react-navigation/native";
+import { AppTheme, useAppTheme } from "App";
+import { IconsEnum } from "libs/united-sharedbill-core/src/shared/enums/icons.enum";
+import React, { useMemo } from "react";
+import { FormattedMessage } from "react-intl";
+import { StyleSheet, View } from "react-native";
 import { useMutation } from "react-query";
 import { GroupRegister } from "types/GroupRegister";
-import { FormProvider, useAppForm } from "@providers/FormProvider";
-import Timeline from "@screens/Groups/Register/components/Timeline";
-import { CommonActions, useNavigation } from "@react-navigation/native";
-
 interface IGroupRegisterScreenProps {}
 
 function GroupRegisterScreen() {
   return (
-    <FormProvider formClass={GroupRegister}>
+    <GroupRegisterProvider>
       <GroupRegisterScreenContent />
-    </FormProvider>
+    </GroupRegisterProvider>
   );
 }
 function GroupRegisterScreenContent(props: IGroupRegisterScreenProps) {
+  const theme = useAppTheme();
   const formContext = useAppForm();
-  const styles = useMemo(() => styleSheet(), []);
+  const styles = useMemo(() => styleSheet(theme), [theme]);
   const navigation = useNavigation();
+  const { save } = useGroupRegisterContext();
 
-  const groupRegisterMutation = useMutation(
-    async (groupRegister: GroupRegister) => {
-      // return GroupAPI.register(groupRegister);
-      console.log(groupRegister);
-    }
-  );
+  const changeIconValue = ({
+    value,
+  }: {
+    value: keyof typeof IconsEnum | undefined;
+  }) => {
+    formContext.form.setValue("icon", value);
+  };
 
   const onSubmit = () => {
     formContext.onSubmit(async (data: GroupRegister) => {
-      await groupRegisterMutation.mutateAsync(data);
+      await save(data);
 
       navigation.dispatch(
         CommonActions.reset({
@@ -51,37 +57,42 @@ function GroupRegisterScreenContent(props: IGroupRegisterScreenProps) {
   };
 
   return (
-    <Background style={styles.container}>
-      <Timeline />
-      <View style={{ flex: 1 }}>
-        <View style={styles.contentContainer}>
-          <ImageSelector id={"image"} />
-          <View style={{ flex: 1, marginHorizontal: 10 }}>
-            <ControlledTextInput
-              id={"name"}
-              label={<FormattedMessage id={MESSAGES.ids.INPUT_GROUP_NAME} />}
-              returnKeyType="next"
-              autoCapitalize="none"
-            />
+    <>
+      <Background style={styles.container}>
+        <View style={{ flex: 1 }}>
+          <View style={styles.contentContainer}>
+            <IconsModalSelect changeIconValue={changeIconValue} />
+            <View style={{ flex: 1, marginHorizontal: 10 }}>
+              <ControlledTextInput
+                id={"title"}
+                label={<FormattedMessage id={MESSAGES.ids.INPUT_GROUP_NAME} />}
+                returnKeyType="next"
+                autoCapitalize="none"
+              />
+            </View>
           </View>
-        </View>
 
-        <ControlledTextInput
-          id={"description"}
-          label={<FormattedMessage id={MESSAGES.ids.INPUT_GROUP_DESCRIPTION} />}
-          returnKeyType="next"
-          style={{ marginHorizontal: 10 }}
-          multiline={true}
-          textAlignVertical={"top"}
-          numberOfLines={4}
-        />
+          <ControlledTextInput
+            id={"description"}
+            label={
+              <FormattedMessage id={MESSAGES.ids.INPUT_GROUP_DESCRIPTION} />
+            }
+            returnKeyType="next"
+            style={{ marginHorizontal: 10 }}
+            multiline={true}
+            textAlignVertical={"top"}
+            numberOfLines={4}
+          />
+        </View>
+      </Background>
+      <View style={styles.contentContainer}>
+        <Button id={MESSAGES.ids.BTN_GROUP_REGISTER} onPress={onSubmit} />
       </View>
-      <Button id={MESSAGES.ids.BTN_GROUP_REGISTER} onPress={onSubmit} />
-    </Background>
+    </>
   );
 }
 
-const styleSheet = () =>
+const styleSheet = (theme: AppTheme) =>
   StyleSheet.create({
     container: {
       flex: 1,
@@ -94,6 +105,12 @@ const styleSheet = () =>
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
+    },
+    modal: {
+      flex: 1,
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
     },
   });
 

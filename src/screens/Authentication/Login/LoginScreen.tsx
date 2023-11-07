@@ -26,7 +26,6 @@ const LoginScreen = ({ navigation }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const changePasswordVisible = () => {
-    console.log(!showPassword);
     setShowPassword(!showPassword);
   };
 

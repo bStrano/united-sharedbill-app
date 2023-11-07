@@ -1,7 +1,7 @@
-import React, {useCallback, useContext} from 'react';
-import {useMutation, UseMutationResult} from 'react-query';
-import {UserRegisterInterface} from 'types/UserRegisterInterface';
-import auth from '@react-native-firebase/auth';
+import React, { useCallback, useContext } from "react";
+import { useMutation, UseMutationResult } from "react-query";
+import { UserRegister } from "types/UserRegisterInterface";
+import auth from "@react-native-firebase/auth";
 
 interface IRegisterUserProviderProps {
   children: React.ReactNode;
@@ -11,13 +11,13 @@ interface RegisterUserContextInterface {
   registerUserMutation: UseMutationResult<
     unknown,
     unknown,
-    UserRegisterInterface,
+    UserRegister,
     unknown
   >;
 }
 
 const RegisterUserContext = React.createContext(
-  {} as RegisterUserContextInterface,
+  {} as RegisterUserContextInterface
 );
 
 export const useRegisterUserContext = () => {
@@ -27,14 +27,14 @@ function RegisterUserProvider(props: IRegisterUserProviderProps) {
   const registerUser = useCallback(async (email: string, password: string) => {
     try {
       await auth().createUserWithEmailAndPassword(email, password);
-      console.log('User account created & signed in!');
+      console.log("User account created & signed in!");
     } catch (error: any) {
-      if (error.code === 'auth/email-already-in-use') {
-        console.log('That email address is already in use!');
+      if (error.code === "auth/email-already-in-use") {
+        console.log("That email address is already in use!");
       }
 
-      if (error.code === 'auth/invalid-email') {
-        console.log('That email address is invalid!');
+      if (error.code === "auth/invalid-email") {
+        console.log("That email address is invalid!");
       }
 
       console.error(error);
@@ -45,11 +45,11 @@ function RegisterUserProvider(props: IRegisterUserProviderProps) {
     async (registerUserParam: UserRegisterInterface) => {
       await registerUser(registerUserParam.email, registerUserParam.password);
       // return UserAPI.register(registerUserParam);
-    },
+    }
   );
 
   return (
-    <RegisterUserContext.Provider value={{registerUserMutation}}>
+    <RegisterUserContext.Provider value={{ registerUserMutation }}>
       {props.children}
     </RegisterUserContext.Provider>
   );

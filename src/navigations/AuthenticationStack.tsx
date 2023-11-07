@@ -4,7 +4,7 @@ import RegisterScreen from "../screens/Authentication/RegisterScreen";
 import ForgotPasswordScreen from "../screens/Authentication/ForgotPasswordScreen";
 import WelcomeScreen from "../screens/Authentication/WelcomeScreen";
 import { FormProvider } from "@providers/FormProvider";
-import { UserRegisterInterface } from "types/UserRegisterInterface";
+import { UserRegister } from "types/UserRegisterInterface";
 import RegisterUserProvider from "@providers/RegisterUserProvider";
 import React from "react";
 
@@ -27,7 +27,7 @@ export default function AuthenticationStack() {
       <Stack.Screen
         name="RegisterScreen"
         component={(props: any) => (
-          <FormProvider formClass={UserRegisterInterface}>
+          <FormProvider formClass={UserRegister}>
             <RegisterUserProvider>
               <RegisterScreen {...props} />
             </RegisterUserProvider>

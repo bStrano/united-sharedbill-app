@@ -1,4 +1,4 @@
-import {en_us} from '../../assets/langs/en_us';
+import { en_us } from "../../assets/langs/en_us";
 
 /**
  * The Singleton class defines the `getInstance` method that lets clients access
@@ -14,10 +14,8 @@ class MessagesIds {
    * construction calls with the `new` operator.
    */
   private constructor() {
-    console.log("Setup Messages Ids Singleton")
     let ids: any = {};
-    Object.keys(en_us).forEach(item => {
-      console.log(item);
+    Object.keys(en_us).forEach((item) => {
       // @ts-ignore
       ids[item] = item;
     });
@@ -40,4 +38,4 @@ class MessagesIds {
 }
 
 const MESSAGES = MessagesIds.getInstance();
-export {MESSAGES};
+export { MESSAGES };
