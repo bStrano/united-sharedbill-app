@@ -6,14 +6,13 @@ import { MESSAGES } from "@constants/messages-ids";
 import { FormProvider, useAppForm } from "@providers/FormProvider";
 import GroupRegisterProvider, {
   useGroupRegisterContext,
-} from "@providers/GroupRegisterProvider";
+} from "@providers/group/GroupRegisterProvider";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import { AppTheme, useAppTheme } from "App";
 import { IconsEnum } from "libs/united-sharedbill-core/src/shared/enums/icons.enum";
 import React, { useMemo } from "react";
 import { FormattedMessage } from "react-intl";
 import { StyleSheet, View } from "react-native";
-import { useMutation } from "react-query";
 import { GroupRegister } from "types/GroupRegister";
 interface IGroupRegisterScreenProps {}
 
@@ -86,7 +85,7 @@ function GroupRegisterScreenContent(props: IGroupRegisterScreenProps) {
         </View>
       </Background>
       <View style={styles.contentContainer}>
-        <Button id={MESSAGES.ids.BTN_GROUP_REGISTER} onPress={onSubmit} />
+        <Button id={MESSAGES.ids.ACTION_CREATE_GROUP} onPress={onSubmit} />
       </View>
     </>
   );

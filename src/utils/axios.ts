@@ -11,6 +11,6 @@ api.interceptors.response.use(
     )
 );
 api.defaults.headers.common.Authorization =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.moOUIur2ZHvGBoIUOGmvMQ25n6W4MN3J0WnSm6b8eE8";
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMzQ1Njc4OTAiLCJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.2yUt-64vNIjsfvxwm79LX4QBBocpqh0RA389es9-MrM";
 
 export default api;

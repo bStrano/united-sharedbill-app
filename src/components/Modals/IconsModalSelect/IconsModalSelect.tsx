@@ -79,7 +79,7 @@ function IconsModalSelect(props: IGroupRegisterScreenProps) {
           <View style={styles.modalBottom}>
             <TouchableOpacity onPress={toggleModal} style={styles.closeModal}>
               <Text style={styles.closeButton}>
-                <FormattedMessage id={MESSAGES.ids.LABEL_CLOSE_PLACEHOLDER} />
+                <FormattedMessage id={MESSAGES.ids.ACTION_CLOSE} />
               </Text>
             </TouchableOpacity>
           </View>

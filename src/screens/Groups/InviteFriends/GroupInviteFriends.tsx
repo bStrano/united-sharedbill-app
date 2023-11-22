@@ -63,9 +63,7 @@ function GroupInviteFriends(props: IGroupInviteFriendsProps) {
           <FormattedMessage id={MESSAGES.ids.LABEL_INVITE_FRIENDS} />
         </Text>
         <Text variant={"labelSmall"}>
-          <FormattedMessage
-            id={MESSAGES.ids.LABEL_DESCRIPTION_INVITE_FRIENDS}
-          />
+          <FormattedMessage id={MESSAGES.ids.LABEL_INVITE_FRIENDS} />
         </Text>
 
         <View style={{ marginBottom: 15, marginTop: 30 }}>
@@ -136,7 +134,7 @@ function GroupInviteFriends(props: IGroupInviteFriendsProps) {
         visibility={qrcodeModalVisibility}
         setVisible={setQRCodeModalVisibility}
       />
-      <Button id={MESSAGES.ids.LABEL_CLOSE_PLACEHOLDER} onPress={onClose} />
+      <Button id={MESSAGES.ids.ACTION_CLOSE} onPress={onClose} />
     </Background>
   );
 }

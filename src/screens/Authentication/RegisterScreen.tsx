@@ -43,13 +43,13 @@ const RegisterScreen = ({ navigation }: Props) => {
 
         <ControlledTextInput
           id={"name"}
-          label={<FormattedMessage id={MESSAGES.ids.NAME_INPUT_PLACEHOLDER} />}
+          label={<FormattedMessage id={MESSAGES.ids.INPUT_NAME} />}
           returnKeyType="next"
         />
 
         <ControlledTextInput
           id={"email"}
-          label={<FormattedMessage id={MESSAGES.ids.EMAIL_INPUT_PLACEHOLDER} />}
+          label={<FormattedMessage id={MESSAGES.ids.INPUT_EMAIL} />}
           returnKeyType="next"
           autoCapitalize="none"
           autoComplete="email"
@@ -58,27 +58,21 @@ const RegisterScreen = ({ navigation }: Props) => {
         />
 
         <ControlledTextInput
-          label={
-            <FormattedMessage id={MESSAGES.ids.PASSWORD_INPUT_PLACEHOLDER} />
-          }
+          label={<FormattedMessage id={MESSAGES.ids.INPUT_PASSWORD} />}
           id={"password"}
           returnKeyType="next"
           secureTextEntry
         />
 
         <ControlledTextInput
-          label={
-            <FormattedMessage
-              id={MESSAGES.ids.CONFIRM_PASSWORD_INPUT_PLACEHOLDER}
-            />
-          }
+          label={<FormattedMessage id={MESSAGES.ids.INPUT_CONFIRM_PASSWORD} />}
           id={"confirmPassword"}
           returnKeyType="done"
           secureTextEntry
         />
 
         <Button
-          id={MESSAGES.ids.BTN_LOGIN_REGISTER}
+          id={MESSAGES.ids.ACTION_REGISTER}
           onPress={onSubmit}
           isLoading={registerUserContext.registerUserMutation.isLoading}
         />
@@ -88,8 +82,7 @@ const RegisterScreen = ({ navigation }: Props) => {
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
             <Text style={styles.link}>
-              {" "}
-              <FormattedMessage id={MESSAGES.ids.BTN_LOGIN} />
+              <FormattedMessage id={MESSAGES.ids.ACTION_LOGIN} />
             </Text>
           </TouchableOpacity>
         </View>

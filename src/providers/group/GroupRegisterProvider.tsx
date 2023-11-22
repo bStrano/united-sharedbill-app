@@ -5,7 +5,7 @@ import Toast from "react-native-toast-message";
 import { useMutation } from "react-query";
 import { GroupRegister } from "types/GroupRegister";
 import { useIntl } from "react-intl";
-import { FormProvider } from "./FormProvider";
+import { FormProvider } from "@providers/FormProvider";
 
 interface IGroupRegisterProviderProps {
   children: React.ReactNode;
