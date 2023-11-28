@@ -97,6 +97,10 @@ function SessionProvider(props: ISessionProviderProps) {
   );
 
   const logout = useCallback(async () => {
+    const refreshToken = await AsyncStorage.getItem(AsyncStorageEnum.REFRESH_TOKEN);
+    await SessionAPI.logout(refreshToken!);
+    await AsyncStorage.removeItem(AsyncStorageEnum.ACCESS_TOKEN);
+    await AsyncStorage.removeItem(AsyncStorageEnum.REFRESH_TOKEN);
     await auth().signOut();
     console.log('User signed out!');
   }, []);
