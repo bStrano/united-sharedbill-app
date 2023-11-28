@@ -5,15 +5,14 @@ import { GroupRegister } from "types/GroupRegister";
 export class GroupAPI {
   static Keys = {
     findAll: "GroupAPI@findAll",
+    save: "GroupAPI@save",
   };
 
   static async findAll() {
     return api.get<GroupInterface[]>("/groups");
   }
 
-  static async register(groupRegister: GroupRegister) {
-    return new Promise((resolve) => {
-      resolve(null);
-    });
+  static async save(form: GroupRegister) {
+    return api.post<GroupInterface>("/groups", form);
   }
 }

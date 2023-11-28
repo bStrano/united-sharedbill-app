@@ -4,6 +4,8 @@ import CoreNavigator from "./CoreNavigator";
 import GroupStack from "./GroupStack";
 import GroupRegisterScreen from "@screens/Groups/Register/GroupRegisterScreen";
 import GroupInviteFriends from "@screens/Groups/InviteFriends/GroupInviteFriends";
+import { useIntl } from "react-intl";
+import { MESSAGES } from "@constants/messages-ids";
 
 export type AuthenticatedStackParamList = {
   CoreNavigator: undefined;
@@ -14,6 +16,8 @@ export type AuthenticatedStackParamList = {
 const Stack = createNativeStackNavigator<AuthenticatedStackParamList>();
 
 export default function AuthenticatedStack() {
+  const intl = useIntl();
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -24,7 +28,10 @@ export default function AuthenticatedStack() {
       <Stack.Screen
         name="GroupStack"
         component={GroupStack}
-        options={{ headerShown: true, title: "Detalhe grupo" }}
+        options={{
+          headerShown: true,
+          title: intl.formatMessage({ id: MESSAGES.ids.LABEL_GROUP_DETAIL }),
+        }}
       />
       <Stack.Screen
         name="GroupRegister"

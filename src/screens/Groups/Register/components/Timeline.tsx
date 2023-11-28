@@ -1,16 +1,16 @@
-import React from 'react';
-import {View} from 'react-native';
-import StepIndicator from 'react-native-step-indicator';
-import {useAppTheme} from '../../../../../App';
-import {FormattedMessage} from 'react-intl';
-import {MESSAGES} from '@constants/messages-ids';
+import React from "react";
+import { View } from "react-native";
+import StepIndicator from "react-native-step-indicator";
+import { useAppTheme } from "../../../../../App";
+import { FormattedMessage } from "react-intl";
+import { MESSAGES } from "@constants/messages-ids";
 
 interface ITimelineProps {}
 
 function Timeline(props: ITimelineProps) {
   const theme = useAppTheme();
   const labels = [
-    <FormattedMessage id={MESSAGES.ids.LABEL_GROUP_CREATE} />,
+    <FormattedMessage id={MESSAGES.ids.LABEL_GROUP_CREATION} />,
     <FormattedMessage id={MESSAGES.ids.LABEL_INVITE_FRIENDS} />,
   ];
   const customStyles = {

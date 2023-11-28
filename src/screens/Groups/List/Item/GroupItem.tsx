@@ -24,6 +24,8 @@ function GroupItem({ item }: GroupItemPropsInterface) {
   //   navigation.navigate("GroupStack");
   // };
 
+  console.log("item item", item);
+
   return (
     <Card
       style={styles.cardContainer}
@@ -39,7 +41,12 @@ function GroupItem({ item }: GroupItemPropsInterface) {
         /> */}
 
         <View style={styles.iconContainer}>
-          <DynamicSvgComponent name="key" width={46} height={46} color="#FFF" />
+          <DynamicSvgComponent
+            name={item.icon}
+            width={46}
+            height={46}
+            color="#FFF"
+          />
         </View>
 
         <View style={styles.contentContainer}>

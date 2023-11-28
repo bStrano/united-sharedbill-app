@@ -26,7 +26,6 @@ const LoginScreen = ({ navigation }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const changePasswordVisible = () => {
-    console.log(!showPassword);
     setShowPassword(!showPassword);
   };
 
@@ -84,22 +83,22 @@ const LoginScreen = ({ navigation }: Props) => {
           onPress={() => navigation.navigate("ForgotPasswordScreen")}
         >
           <Text style={styles.label}>
-            <FormattedMessage id={MESSAGES.ids.BTN_FORGOT_PASSWORD} />
+            <FormattedMessage id={MESSAGES.ids.ACTION_FORGOT_PASSWORD} />
           </Text>
         </TouchableOpacity>
       </View>
 
-      <LoginButton id={MESSAGES.ids.BTN_LOGIN} onPress={_onLoginPressed} />
+      <LoginButton id={MESSAGES.ids.ACTION_LOGIN} onPress={_onLoginPressed} />
 
       <LoginSocialForm />
 
       <View style={styles.row}>
         <Text style={styles.label}>
-          <FormattedMessage id={MESSAGES.ids.LABEL_LOGIN_REGISTER} />
+          <FormattedMessage id={MESSAGES.ids.LABEL_DONT_HAVE_AN_ACCOUNT} />
         </Text>
         <TouchableOpacity onPress={() => navigation.navigate("RegisterScreen")}>
           <Text style={styles.link}>
-            <FormattedMessage id={MESSAGES.ids.BTN_LOGIN_REGISTER} />
+            <FormattedMessage id={MESSAGES.ids.ACTION_SING_UP} />
           </Text>
         </TouchableOpacity>
       </View>
