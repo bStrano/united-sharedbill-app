@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CoreNavigator from "./CoreNavigator";
-import GroupStack from "./GroupStack";
+import GroupStack, { GroupStackParamList } from "./GroupStack";
 import GroupRegisterScreen from "@screens/Groups/Register/GroupRegisterScreen";
 import GroupInviteFriends from "@screens/Groups/InviteFriends/GroupInviteFriends";
 import { useIntl } from "react-intl";
@@ -9,7 +9,7 @@ import { MESSAGES } from "@constants/messages-ids";
 
 export type AuthenticatedStackParamList = {
   CoreNavigator: undefined;
-  GroupStack: undefined;
+  GroupStack: any; //TODO: inform the correct type
   GroupRegister: undefined;
   GroupInviteFriends: undefined;
 };

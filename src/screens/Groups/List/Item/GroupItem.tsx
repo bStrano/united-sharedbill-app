@@ -1,15 +1,14 @@
 import React, { useMemo } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Card, MD3Theme, Text } from "react-native-paper";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-import { useNavigation } from "@react-navigation/native";
-import { useAppTheme } from "../../../../../App";
-import { GroupInterface } from "libs/united-sharedbill-core/src/modules/groups/entities/group.interface";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { GroupStackParamList } from "@navigations/GroupStack";
 import { DynamicSvgComponent } from "@components/Icon/Icon";
 import { AuthenticatedStackParamList } from "@navigations/AuthenticatedStack";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { GroupInterface } from "libs/united-sharedbill-core/src/modules/groups/entities/group.interface";
+import { useAppTheme } from "../../../../../App";
 
 interface GroupItemPropsInterface {
   item: GroupInterface;
@@ -24,13 +23,18 @@ function GroupItem({ item }: GroupItemPropsInterface) {
   //   navigation.navigate("GroupStack");
   // };
 
-  console.log("item item", item);
-
   return (
     <Card
       style={styles.cardContainer}
       mode="elevated"
-      onPress={() => navigation.navigate("GroupStack")}
+      onPress={() =>
+        navigation.navigate("GroupStack", {
+          screen: "GroupDashboard",
+          params: {
+            groupId: item.id,
+          },
+        })
+      }
     >
       <Card.Content style={styles.innerContainer}>
         {/* <Image

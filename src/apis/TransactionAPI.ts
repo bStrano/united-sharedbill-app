@@ -1,5 +1,5 @@
 import api from "@utils/axios";
-import { TransactionInterface } from "libs/united-sharedbill-core/src/modules/transactions/entities/transaction.interface";
+import { TransactionTimelineSection } from "libs/united-sharedbill-core/src/modules/transactions/responses/timeline/transaction-timeline-section";
 
 export class TransactionAPI {
   static Keys = {
@@ -7,6 +7,9 @@ export class TransactionAPI {
   };
 
   static async findAllByGroup({ groupId }: { groupId: string }) {
-    return api.get<TransactionInterface[]>(`/transactions/group/${groupId}`);
+    const timezone = new Date().getTimezoneOffset();
+    return api.get<TransactionTimelineSection[]>(
+      `/transactions/group/${groupId}/${timezone}`
+    );
   }
 }

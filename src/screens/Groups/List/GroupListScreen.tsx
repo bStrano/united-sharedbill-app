@@ -36,6 +36,7 @@ function GroupListScreenWithContent(props: GroupScreenPropsInterface) {
       <Headline title={"Meus grupos"} />
       <FlatList
         data={groups}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => <GroupItem item={item} />}
       />
       <FAB onPress={onFABPress} />

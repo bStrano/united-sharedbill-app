@@ -7,78 +7,14 @@ import {
   ListTransactionProvider,
   useListTransactionContext,
 } from "@providers/transaction/ListTransactionByGroupProvider";
+import MonthNome from "@components/MonthNames";
 
 interface IGroupDashboardScreenProps {}
 
-// {
-//   title: "Teste 1",
-//   data: [
-//     {
-//       type: "NEW_EXPENSE",
-//       date: new Date(),
-//       isUserCreator: true,
-//       debit: {
-//         name: "Pastel de Queijo",
-//         total: 12.3,
-//         value: 6,
-//       },
-//       creator: {
-//         name: "Bruno Strano",
-//         id: 1,
-//       },
-//     },
-//     {
-//       date: new Date(),
-//       type: "NEW_EXPENSE",
-//       isUserCreator: true,
-//       debit: {
-//         name: "Pastel de Queijo",
-//         total: 12.3,
-//         value: 6,
-//       },
-//       creator: {
-//         name: "Bruno Strano",
-//         id: 1,
-//       },
-//     },
-//   ],
-// },
-// {
-//   title: "TITULO 2",
-//   data: [
-//     {
-//       date: new Date(),
-//       type: "NEW_EXPENSE",
-//       isUserCreator: true,
-//       debit: {
-//         name: "Pastel de Queijo",
-//         total: 12.3,
-//         value: 6,
-//       },
-//       creator: {
-//         name: "Bruno Strano",
-//         id: 1,
-//       },
-//     },
-//     {
-//       date: new Date(),
-//       isUserCreator: false,
-//       type: "NEW_EXPENSE",
-//       debit: {
-//         name: "Pastel de Carne",
-//         total: 14.3,
-//         value: 6,
-//       },
-//       creator: {
-//         name: "Gabriel Gondo",
-//         id: 2,
-//       },
-//     },
-//   ],
-// },
-function GroupTimelineScreen() {
+function GroupTimelineScreen({ groupId }: { groupId: string }) {
+  console.log(groupId);
   return (
-    <ListTransactionProvider>
+    <ListTransactionProvider groupId={groupId}>
       <GroupTimelineScreenContent />
     </ListTransactionProvider>
   );
@@ -87,18 +23,16 @@ function GroupTimelineScreen() {
 function GroupTimelineScreenContent(props: IGroupDashboardScreenProps) {
   const { transactions } = useListTransactionContext();
 
-  // const timeline: GroupActivityTimelineSectionInterface[] = useMemo(() => {}, [
-  //   transactions,
-  // ]);
-
   return (
     <View>
       <SectionList
-        renderItem={({ item }) => <GroupTimelineItem data={item} />}
-        renderSectionHeader={({ section: { title } }) => (
-          <GroupTimelineHeader title={title} />
+        renderItem={({ item }) => <GroupTimelineItem transaction={item} />}
+        renderSectionHeader={({ section: { year, month } }) => (
+          <GroupTimelineHeader
+            title={MonthNome({ monthNumber: +month }) + " " + year}
+          />
         )}
-        sections={[]}
+        sections={transactions}
       />
     </View>
   );

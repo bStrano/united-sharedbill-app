@@ -1,12 +1,13 @@
-import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
 import GroupDashboardTopTabNavigator from "./GroupDashboardTopTabNavigator";
 
 export type GroupStackParamList = {
-  GroupDashboard: undefined;
+  GroupDashboard: { groupId: string };
 };
 
 const Stack = createNativeStackNavigator<GroupStackParamList>();
+
 export default function GroupStack() {
   return (
     <Stack.Navigator>

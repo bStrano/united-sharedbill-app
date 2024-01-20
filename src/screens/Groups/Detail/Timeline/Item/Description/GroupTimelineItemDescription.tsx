@@ -1,22 +1,23 @@
-import React from 'react';
-import {Text} from 'react-native-paper';
-import {StyleSheet, View} from 'react-native';
-import {DebitInterface} from 'types/DebitInterface';
-import {GroupCreatorInterface} from 'types/GroupCreatorInterface';
+import React from "react";
+import { Text } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
+import { DebitInterface } from "types/DebitInterface";
+import { GroupCreatorInterface } from "types/GroupCreatorInterface";
 
-interface GroupTimelineItemDescriptionPropsInterface {
-  debit: DebitInterface;
-  creator: GroupCreatorInterface;
-}
-
-export function GroupTimelineItemDescription(
-  props: GroupTimelineItemDescriptionPropsInterface,
-) {
+export function GroupTimelineItemDescription({
+  transactionName,
+  ownerName,
+  total,
+}: {
+  transactionName: string;
+  ownerName: string;
+  total: number;
+}) {
   return (
     <View style={styles.container}>
-      <Text variant={'titleSmall'}>{props.debit.name}</Text>
-      <Text variant={'labelSmall'}>
-        {props.creator.name} pagou R$ {props.debit.total}
+      <Text variant={"titleSmall"}>{transactionName}</Text>
+      <Text variant={"labelSmall"}>
+        {ownerName} pagou R$ {total}
       </Text>
     </View>
   );

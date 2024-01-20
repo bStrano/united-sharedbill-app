@@ -5,12 +5,23 @@ import GroupTimelineScreen from "../screens/Groups/Detail/Timeline/GroupTimeline
 import { useAppTheme } from "App";
 import { MESSAGES } from "@constants/messages-ids";
 import { useIntl } from "react-intl";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { GroupStackParamList } from "./GroupStack";
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function GroupDashboardTopTabNavigator() {
+type GroupDashboardTopTabNavigatorProps = NativeStackScreenProps<
+  GroupStackParamList,
+  "GroupDashboard"
+>;
+
+export default function GroupDashboardTopTabNavigator({
+  route,
+}: GroupDashboardTopTabNavigatorProps) {
   const theme = useAppTheme();
   const intl = useIntl();
+
+  const { groupId } = route.params;
 
   return (
     <Tab.Navigator
@@ -24,7 +35,7 @@ export default function GroupDashboardTopTabNavigator() {
       />
       <Tab.Screen
         name={intl.formatMessage({ id: MESSAGES.ids.LABEL_TIMELINE })}
-        component={GroupTimelineScreen}
+        component={() => <GroupTimelineScreen groupId={groupId} />}
       />
       <Tab.Screen
         name={intl.formatMessage({ id: MESSAGES.ids.LABEL_PARTICIPANTS })}

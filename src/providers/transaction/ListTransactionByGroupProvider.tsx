@@ -1,14 +1,15 @@
 import { TransactionAPI } from "@apis/TransactionAPI";
-import { TransactionInterface } from "libs/united-sharedbill-core/src/modules/transactions/entities/transaction.interface";
+import { TransactionTimelineSection } from "libs/united-sharedbill-core/src/modules/transactions/responses/timeline/transaction-timeline-section";
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
 
 interface ITransactionProviderProps {
   children: React.ReactNode;
+  groupId: string;
 }
 
 interface ListTransactionContextInterface {
-  transactions: TransactionInterface[];
+  transactions: TransactionTimelineSection[];
   isLoading: boolean;
 }
 
@@ -17,7 +18,7 @@ const ListTransactionContext = React.createContext(
 );
 
 export function ListTransactionProvider(props: ITransactionProviderProps) {
-  const groupId = "243c27cb-fdae-46f8-bbb4-06972d623fab";
+  const groupId = props.groupId;
 
   const { data, isLoading } = useQuery(TransactionAPI.Keys.findAllByGroup, () =>
     TransactionAPI.findAllByGroup({ groupId })

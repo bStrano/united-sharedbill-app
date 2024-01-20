@@ -1,14 +1,14 @@
 import {
   GoogleSignin,
   statusCodes,
-} from '@react-native-google-signin/google-signin';
-import React, {useCallback, useContext} from 'react';
-import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {useFeedback} from '@hooks/useFeedback';
+} from "@react-native-google-signin/google-signin";
+import React, { useCallback, useContext } from "react";
+import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
+import { useFeedback } from "@hooks/useFeedback";
 
 GoogleSignin.configure({
   webClientId:
-    '131856245356-94m33oeeii24kmjp1o586nls59ad8pii.apps.googleusercontent.com',
+    "131856245356-94m33oeeii24kmjp1o586nls59ad8pii.apps.googleusercontent.com",
 });
 
 interface GoogleProviderPropsInterface {
@@ -25,7 +25,7 @@ export const useGoogle = () => {
   return useContext(GoogleContext);
 };
 export function GoogleProvider(props: GoogleProviderPropsInterface) {
-  const {showErrorFeedback} = useFeedback();
+  const { showErrorFeedback } = useFeedback();
 
   const login = useCallback(async () => {
     try {
@@ -43,14 +43,14 @@ export function GoogleProvider(props: GoogleProviderPropsInterface) {
         // operation (e.g. sign in) is in progress already
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         showErrorFeedback({
-          title: 'Falha ao autenticar',
-          message: 'Play services not available or outdated',
+          title: "Falha ao autenticar",
+          message: "Play services not available or outdated",
         });
         // play services not available or outdated
       } else {
         showErrorFeedback({
-          title: 'Falha ao autenticar',
-          message: 'Ocorreu um erro inesperado ao se autenticar',
+          title: "Falha ao autenticar",
+          message: "Ocorreu um erro inesperado ao se autenticar",
         });
         // some other error happened
       }
@@ -58,7 +58,7 @@ export function GoogleProvider(props: GoogleProviderPropsInterface) {
   }, [showErrorFeedback]);
 
   return (
-    <GoogleContext.Provider value={{login}}>
+    <GoogleContext.Provider value={{ login }}>
       {props.children}
     </GoogleContext.Provider>
   );

@@ -1,10 +1,21 @@
-import React from 'react';
-import {Text} from 'react-native-paper';
+import React from "react";
+import { StyleSheet } from "react-native";
+import { Text } from "react-native-paper";
 
 interface GroupTimelineHeaderPropsInterface {
   title: string;
 }
 
 export function GroupTimelineHeader(props: GroupTimelineHeaderPropsInterface) {
-  return <Text variant={'titleMedium'}>{props.title}</Text>;
+  return (
+    <Text variant={"titleSmall"} style={styles.title}>
+      {props.title}
+    </Text>
+  );
 }
+const styles = StyleSheet.create({
+  title: {
+    marginTop: 15,
+    marginLeft: 15,
+  },
+});
