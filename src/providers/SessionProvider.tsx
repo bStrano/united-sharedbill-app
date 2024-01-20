@@ -7,6 +7,9 @@ import {
 } from "../../libs/united-sharedbill-core/src/modules/auth/returns/refresh-session-return.interface";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AsyncStorageEnum } from "@constants/local-storage-keys";
+import { TokensUtils } from "@utils/tokens.utils";
+import axios from "axios";
+import api from "@utils/axios";
 
 interface ISessionProviderProps {
   children: React.ReactNode;
@@ -24,7 +27,7 @@ interface SessionContextInterface {
     loginType: LoginTypeEnum,
     userCredentials?: {username: string; password: string},
   ): Promise<void>;
-  logout(): Promise<void>;
+  logout(onlyLocalLogout?: boolean): Promise<void>;
 }
 
 const SessionContext = React.createContext({} as SessionContextInterface);
@@ -96,13 +99,52 @@ function SessionProvider(props: ISessionProviderProps) {
     [initializing],
   );
 
-  const logout = useCallback(async () => {
+  const logout = useCallback(async (onlyLocalLogout: boolean) => {
     const refreshToken = await AsyncStorage.getItem(AsyncStorageEnum.REFRESH_TOKEN);
-    await SessionAPI.logout(refreshToken!);
+    if(!onlyLocalLogout){
+      await SessionAPI.logout(refreshToken!);
+    }
     await AsyncStorage.removeItem(AsyncStorageEnum.ACCESS_TOKEN);
     await AsyncStorage.removeItem(AsyncStorageEnum.REFRESH_TOKEN);
     await auth().signOut();
     console.log('User signed out!');
+  }, []);
+
+  useEffect(() => {
+
+    api.interceptors.request.use(async function (config) {
+      let accessToken = await AsyncStorage.getItem(AsyncStorageEnum.ACCESS_TOKEN);
+      if (accessToken) {
+        const isExpired = TokensUtils.isTokenExpired(accessToken);
+        if(isExpired) {
+          try {
+            const refreshToken = await AsyncStorage.getItem(AsyncStorageEnum.REFRESH_TOKEN);
+            const data = await SessionAPI.restoreSession(refreshToken!);
+            await AsyncStorage.setItem(AsyncStorageEnum.ACCESS_TOKEN, data.accessToken);
+            await AsyncStorage.setItem(AsyncStorageEnum.REFRESH_TOKEN, data.refreshToken);
+            accessToken = data.accessToken;
+          } catch (e) {
+            await logout(true)
+          }
+        }
+        config.headers.Authorization = `Bearer ${accessToken}`;
+      }
+
+      return config;
+    }, function (error) {
+      return Promise.reject(error);
+    });
+
+    axios.interceptors.response.use(function (response) {
+      // Any status code that lie within the range of 2xx cause this function to trigger
+      // Do something with response data
+      return response;
+    }, function (error) {
+      // Any status codes that falls outside the range of 2xx cause this function to trigger
+      // Do something with response error
+      return Promise.reject(error);
+    });
+
   }, []);
 
   useEffect(() => {
