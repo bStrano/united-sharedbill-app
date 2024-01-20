@@ -1,16 +1,30 @@
-import React from 'react';
-import {View} from 'react-native';
-import {Text} from 'react-native-paper';
-
-interface IGroupDashboardScreenProps {}
+import FAB from "@components/FAB";
+import { GroupStackParamList } from "@navigations/GroupStack";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import React, { useCallback } from "react";
+import { StyleSheet, View } from "react-native";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function GroupDashboardScreen(props: IGroupDashboardScreenProps) {
+function GroupDashboardScreen({ groupId }: { groupId: string }) {
+  const navigation = useNavigation<StackNavigationProp<GroupStackParamList>>();
+
+  const onFABPress = useCallback(() => {
+    navigation.navigate("CreateTransactionScreen", {
+      groupId,
+    });
+  }, [navigation]);
+
   return (
-    <View>
-      <Text> Dashboard </Text>
+    <View style={styles.container}>
+      <FAB onPress={onFABPress} />
     </View>
   );
 }
 
 export default GroupDashboardScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

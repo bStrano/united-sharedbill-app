@@ -51,6 +51,23 @@ export const en_us = {
   //Successes
   SUCCESSES_GROUP_CREATED: "Group created successfully",
 
+  //TRANSACTION
+  ACTION_CREATE_TRANSACTION: "Create transaction",
+
+  //TRANSACTIONS ERRORS
+  ERROR_TRANSACTION_INVALID_TITLE: "Invalid title",
+  ERROR_TRANSACTION_INVALID_DESCRIPTION: "Invalid description",
+  ERROR_TRANSACTION_INVALID_TOTAL_AMOUNT: "Invalid total amount",
+  ERROR_TRANSACTION_INVALID_AMOUNT: "Invalid amount",
+
+  //TRANSACTIONS SUCCESSES
+  SUCCESSES_TRANSACTION_CREATED: "Transaction created successfully",
+
+  //TRANSACTION LABELS
+  LABEL_TRANSACTION_TITLE: "Titlte",
+  LABEL_TRANSACTION_DESCRIPTION: "Description",
+  LABEL_TRANSACTION_TYPE: "Transaction Type",
+
   OPTION_INVITE_FRIENDS_APP: "Amigo do aplicativo",
   OPTION_DESCRIPTION_INVITE_FRIENDS_APP: "Convide seus amigos do United",
   OPTION_INVITE_SHARE_LINK: "Compartilhar Link",

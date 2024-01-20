@@ -21,7 +21,7 @@ export default function GroupDashboardTopTabNavigator({
   const theme = useAppTheme();
   const intl = useIntl();
 
-  const { groupId } = route.params;
+  const groupId = route.params?.groupId;
 
   return (
     <Tab.Navigator
@@ -31,7 +31,7 @@ export default function GroupDashboardTopTabNavigator({
     >
       <Tab.Screen
         name={intl.formatMessage({ id: MESSAGES.ids.LABEL_HOME })}
-        component={GroupDashboardScreen}
+        component={() => <GroupDashboardScreen groupId={groupId} />}
       />
       <Tab.Screen
         name={intl.formatMessage({ id: MESSAGES.ids.LABEL_TIMELINE })}
