@@ -1,5 +1,9 @@
 #import "AppDelegate.h"
 #import <Firebase.h>
+#import <AppCenterReactNativeShared/AppCenterReactNativeShared.h>
+#import <AppCenterReactNative.h>
+#import <AppCenterReactNativeAnalytics.h>
+#import <AppCenterReactNativeCrashes.h>
 
 #import <React/RCTBundleURLProvider.h>
 
@@ -8,6 +12,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FIRApp configure];
+  [AppCenterReactNativeShared setStartAutomatically:YES];
+  NSString *appSecret = [[[NSProcessInfo processInfo] environment] objectForKey:@"APP_CENTER_SECRET"] ?: @"default_app_secret";
+
+  [AppCenterReactNativeShared setAppSecret:appSecret];
+  [AppCenterReactNative register];
+  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];
+  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
+  
   self.moduleName = @"UnitedSharedBills";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.

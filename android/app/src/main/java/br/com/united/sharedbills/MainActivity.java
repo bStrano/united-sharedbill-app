@@ -4,6 +4,10 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+
 import android.os.Bundle;
 
 
@@ -21,6 +25,7 @@ public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(null);
+    AppCenter.start(getApplication(), BuildConfig.APP_CENTER_SECRET, Analytics.class, Crashes.class);
   }
   /**
    * Returns the instance of the {@link ReactActivityDelegate}. Here we use a util class {@link
