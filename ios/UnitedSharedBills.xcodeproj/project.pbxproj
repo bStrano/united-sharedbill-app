@@ -18,10 +18,12 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1E45A1BE21F2F2F4F4CA5DB2 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A10B498723718AD4D31DA /* ExpoModulesProvider.swift */; };
 		27FFF6BFDEA945B0AF866AA4 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9B5739D76BD41169BEC865B /* Montserrat-ExtraBoldItalic.ttf */; };
 		2BEAE78940CB412DB66963A7 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58FACB53A9C14860828A87A5 /* Montserrat-ExtraLightItalic.ttf */; };
 		4532EA8A9DFE42A7BF7F6ACC /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D67DF03B88EB4545B4A55D57 /* Montserrat-Regular.ttf */; };
 		6BFAC816781444C6BBDAE6E1 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46BD99CC3FE54CEDBBA6953D /* Montserrat-MediumItalic.ttf */; };
+		747BA878E27B15CFBBCA030E /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A590583FE36A4735B91A48 /* ExpoModulesProvider.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		891511BAA4CC423FBF69AD8B /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF814035FD644802B2200630 /* Montserrat-ExtraLight.ttf */; };
 		9CDDB267F6E8417C849C0809 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 920CB07DA53D457C9E8E04CD /* Montserrat-SemiBoldItalic.ttf */; };
@@ -59,7 +61,9 @@
 		2166198D48EE4DDCB8378662 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		23334712F1D31A372200FBB3 /* Pods_UnitedSharedBills.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitedSharedBills.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-UnitedSharedBills.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitedSharedBills.debug.xcconfig"; path = "Target Support Files/Pods-UnitedSharedBills/Pods-UnitedSharedBills.debug.xcconfig"; sourceTree = "<group>"; };
+		3B7A10B498723718AD4D31DA /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-UnitedSharedBills/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		3E34F88E4C664C24B7FA5EFE /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../assets/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
+		44A590583FE36A4735B91A48 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-UnitedSharedBills-UnitedSharedBillsTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		44ECB33DEF5D40989197FE65 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		46BD99CC3FE54CEDBBA6953D /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-MediumItalic.ttf"; path = "../assets/fonts/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
 		548A70775B0545E58A739294 /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BlackItalic.ttf"; path = "../assets/fonts/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -170,6 +174,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		81AADBCD79C1F8D03CBADDB8 /* UnitedSharedBills */ = {
+			isa = PBXGroup;
+			children = (
+				3B7A10B498723718AD4D31DA /* ExpoModulesProvider.swift */,
+			);
+			name = UnitedSharedBills;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +200,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				6BEF0EBB7AE34393B4731783 /* Resources */,
+				D1A2F496CF4EC16A7A05F682 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -203,6 +216,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		92AA2790755250E0B2ED585E /* UnitedSharedBillsTests */ = {
+			isa = PBXGroup;
+			children = (
+				44A590583FE36A4735B91A48 /* ExpoModulesProvider.swift */,
+			);
+			name = UnitedSharedBillsTests;
+			sourceTree = "<group>";
+		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +233,15 @@
 				89C6BE57DB24E9ADA2F236DE /* Pods-UnitedSharedBills-UnitedSharedBillsTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D1A2F496CF4EC16A7A05F682 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				81AADBCD79C1F8D03CBADDB8 /* UnitedSharedBills */,
+				92AA2790755250E0B2ED585E /* UnitedSharedBillsTests */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		E43E81BD2AD6260E00FA6D1B /* Fonts */ = {
@@ -511,6 +541,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* UnitedSharedBillsTests.m in Sources */,
+				747BA878E27B15CFBBCA030E /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +551,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				1E45A1BE21F2F2F4F4CA5DB2 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,7 +576,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = UnitedSharedBillsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -555,6 +587,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UnitedSharedBills.app/UnitedSharedBills";
@@ -568,7 +601,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = UnitedSharedBillsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -579,6 +612,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UnitedSharedBills.app/UnitedSharedBills";
@@ -604,6 +638,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = UnitedSharedBills;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -630,6 +665,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = UnitedSharedBills;
 				SWIFT_VERSION = 5.0;
@@ -686,7 +722,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -751,7 +787,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",

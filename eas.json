@@ -1,0 +1,18 @@
+{
+  "build": {
+    "production": {
+      "channel": "production"
+    },
+    "preview": {
+      "channel": "staging",
+      "distribution": "internal"
+    }
+  },
+  "submit": {
+    "production": {
+      "android": {
+        "track": "internal"
+      }
+    }
+  }
+}
