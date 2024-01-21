@@ -1,12 +1,9 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { GroupActivityTimelineInterface } from "types/GroupActivityTimelineInterface";
 import { GroupTimelineItemDay } from "@screens/Groups/Detail/Timeline/Item/Day/GroupTimelineItemDay";
 import { GroupTimelineItemIcon } from "@screens/Groups/Detail/Timeline/Item/Icon/GroupTimelineItemIcon";
-import { GroupTimelineItemDescription } from "@screens/Groups/Detail/Timeline/Item/Description/GroupTimelineItemDescription";
 import { GroupTimelineItemValues } from "@screens/Groups/Detail/Timeline/Item/Values/GroupTimelineItemValues";
-import { TransactionTimelineSection } from "libs/united-sharedbill-core/src/modules/transactions/responses/timeline/transaction-timeline-section";
 import { TransactionTimelineContent } from "libs/united-sharedbill-core/src/modules/transactions/responses/timeline/transaction-timeline-content";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 
 interface GroupTimelineItemPropsInterface {
@@ -28,7 +25,8 @@ export function GroupTimelineItem({
       <View style={styles.container2}>
         <Text variant={"titleSmall"}>{transaction.title}</Text>
         <Text variant={"labelSmall"}>
-          {transaction.owners[0].name} pagou R$ {transaction.owners[0].amount}
+          {transaction.isOwner ? "Você" : transaction.owners[0].name} pagou R$
+          {transaction.owners[0].amount}
         </Text>
       </View>
 

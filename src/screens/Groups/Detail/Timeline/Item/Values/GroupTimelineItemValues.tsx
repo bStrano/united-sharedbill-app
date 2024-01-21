@@ -1,7 +1,7 @@
-import React, {useMemo} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Text} from 'react-native-paper';
-import {DebitInterface} from 'types/DebitInterface';
+import React, { useMemo } from "react";
+import { StyleSheet, View } from "react-native";
+import { Text } from "react-native-paper";
+import { DebitInterface } from "types/DebitInterface";
 
 interface GroupTimelineItemValuesPropsInterface {
   isCreator: boolean;
@@ -9,14 +9,14 @@ interface GroupTimelineItemValuesPropsInterface {
 }
 
 export function GroupTimelineItemValues(
-  props: GroupTimelineItemValuesPropsInterface,
+  props: GroupTimelineItemValuesPropsInterface
 ) {
   const styles = styleSheet();
   const title = useMemo(() => {
     if (props.isCreator) {
-      return 'voce pegou emprestado';
+      return "você emprestou";
     } else {
-      return 'voce emprestou';
+      return "você pegou emprestado";
     }
   }, [props.isCreator]);
 
@@ -25,8 +25,8 @@ export function GroupTimelineItemValues(
   }
   return (
     <View>
-      <Text variant={'labelSmall'}>{title}</Text>
-      <Text variant={'labelMedium'} style={styles.labelText}>
+      <Text variant={"labelSmall"}>{title}</Text>
+      <Text variant={"labelMedium"} style={styles.labelText}>
         R$ {props.debit.value}
       </Text>
     </View>
@@ -36,6 +36,6 @@ export function GroupTimelineItemValues(
 const styleSheet = () =>
   StyleSheet.create({
     labelText: {
-      textAlign: 'right',
+      textAlign: "right",
     },
   });

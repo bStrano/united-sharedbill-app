@@ -1,29 +1,28 @@
+import { GroupAPI } from "@apis/GroupAPI";
 import Background from "@components/Background";
 import Button from "@components/Button";
 import ControlledTextInput from "@components/ControlledTextInput";
 import IconsModalSelect from "@components/Modals/IconsModalSelect/IconsModalSelect";
-import SelectInput from "@components/SelectInput";
 import { MESSAGES } from "@constants/messages-ids";
+import { GroupStackParamList } from "@navigations/GroupStack";
 import { useAppForm } from "@providers/FormProvider";
 import CreateTransactionProvider, {
   useCreateTransactionContext,
 } from "@providers/transaction/CreateTransactionProvider";
 import { CommonActions, useNavigation } from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { convertEnumToSelectOptions } from "@utils/convertEnumToSelectOptions";
 import { AppTheme, useAppTheme } from "App";
+import { GroupInterface } from "libs/united-sharedbill-core/src/modules/groups/entities/group.interface";
+import { TransactionTypeEnum } from "libs/united-sharedbill-core/src/modules/transactions/enums/transaction-type.enum";
 import { IconsEnum } from "libs/united-sharedbill-core/src/shared/enums/icons.enum";
 import React, { useMemo, useState } from "react";
+import { useController } from "react-hook-form";
 import { FormattedMessage } from "react-intl";
 import { StyleSheet, View } from "react-native";
-import { CreateTransaction } from "types/CreateTransaction";
-import { TransactionTypeEnum } from "libs/united-sharedbill-core/src/modules/transactions/enums/transaction-type.enum";
-import { convertEnumToSelectOptions } from "@utils/convertEnumToSelectOptions";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { GroupStackParamList } from "@navigations/GroupStack";
-import { GroupAPI } from "@apis/GroupAPI";
-import { GroupInterface } from "libs/united-sharedbill-core/src/modules/groups/entities/group.interface";
-import { useQuery } from "react-query";
 import DropDownPicker from "react-native-dropdown-picker";
-import { useController } from "react-hook-form";
+import { useQuery } from "react-query";
+import { CreateTransaction } from "types/CreateTransaction";
 
 interface ICreateTransactionScreenProps {
   groupId: string;
@@ -146,8 +145,12 @@ function CreateTransactionScreenContent(props: ICreateTransactionScreenProps) {
         />
 
         <ControlledTextInput
-          id={"total"}
-          label={<FormattedMessage id={MESSAGES.ids.LABEL_TRANSACTION_TITLE} />}
+          id={"title"}
+          label={
+            <FormattedMessage
+              id={MESSAGES.ids.LABEL_TRANSACTION_TOTAL_AMOUNT}
+            />
+          }
           returnKeyType="next"
           autoCapitalize="none"
         />

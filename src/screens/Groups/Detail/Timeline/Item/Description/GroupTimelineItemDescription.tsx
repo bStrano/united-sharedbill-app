@@ -1,8 +1,6 @@
 import React from "react";
-import { Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
-import { DebitInterface } from "types/DebitInterface";
-import { GroupCreatorInterface } from "types/GroupCreatorInterface";
+import { Text } from "react-native-paper";
 
 export function GroupTimelineItemDescription({
   transactionName,

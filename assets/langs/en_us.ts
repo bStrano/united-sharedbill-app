@@ -67,6 +67,7 @@ export const en_us = {
   LABEL_TRANSACTION_TITLE: "Titlte",
   LABEL_TRANSACTION_DESCRIPTION: "Description",
   LABEL_TRANSACTION_TYPE: "Transaction Type",
+  LABEL_TRANSACTION_TOTAL_AMOUNT: "Total amout",
 
   OPTION_INVITE_FRIENDS_APP: "Amigo do aplicativo",
   OPTION_DESCRIPTION_INVITE_FRIENDS_APP: "Convide seus amigos do United",
