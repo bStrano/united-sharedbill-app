@@ -1,7 +1,7 @@
 {
   "build": {
     "production": {
-      "channel": "production"
+      "channel": "master"
     },
     "preview": {
       "channel": "staging",
