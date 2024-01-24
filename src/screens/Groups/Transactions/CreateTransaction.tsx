@@ -2,6 +2,7 @@ import { GroupAPI } from "@apis/GroupAPI";
 import Background from "@components/Background";
 import Button from "@components/Button";
 import ControlledTextInput from "@components/ControlledTextInput";
+import CurrencyInput from "@components/CurrencyInput";
 import IconsModalSelect from "@components/Modals/IconsModalSelect/IconsModalSelect";
 import { MESSAGES } from "@constants/messages-ids";
 import { GroupStackParamList } from "@navigations/GroupStack";
@@ -132,7 +133,6 @@ function CreateTransactionScreenContent(props: ICreateTransactionScreenProps) {
             />
           </View>
         </View>
-
         <ControlledTextInput
           id={"description"}
           label={
@@ -144,8 +144,8 @@ function CreateTransactionScreenContent(props: ICreateTransactionScreenProps) {
           numberOfLines={4}
         />
 
-        <ControlledTextInput
-          id={"title"}
+        <CurrencyInput
+          id={"total"}
           label={
             <FormattedMessage
               id={MESSAGES.ids.LABEL_TRANSACTION_TOTAL_AMOUNT}

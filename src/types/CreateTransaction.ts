@@ -20,8 +20,8 @@ export class CreateTransaction {
   @IsString({ message: MESSAGES.ids.ERROR_TRANSACTION_INVALID_DESCRIPTION })
   description: string;
 
-  @IsString()
-  total: string;
+  @IsNumber()
+  total: number;
 
   // @IsString()
   // groupId: string;
