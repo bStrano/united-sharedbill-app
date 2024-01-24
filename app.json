@@ -1,4 +1,26 @@
 {
   "name": "UnitedSharedBills",
-  "displayName": "UnitedSharedBills"
+  "displayName": "UnitedSharedBills",
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "a24db87e-f499-4f6f-b432-7401267d07e6"
+      }
+    },
+    "hermesEnabled": true,
+    "owner": "united-corportation",
+    "slug": "united-shared-bills",
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/a24db87e-f499-4f6f-b432-7401267d07e6"
+    },
+    "android": {
+      "hermesEnabled": true,
+      "jsEngine": "hermes"
+    },
+    "ios": {
+      "hermesEnabled": true,
+      "jsEngine": "hermes"
+    }
+  }
 }
