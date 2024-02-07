@@ -44,7 +44,7 @@ export const en_us = {
   ERROR_INVALID_TITLE: "Invalid title",
   ERROR_INVALID_DESCRIPTION: "Invalid description",
   ERROR_INVALID_EMAIL: "Invalid email",
-  ERROR_INVALID_PASSWORD: "The password must contain at least 8 characters, ",
+  ERROR_INVALID_PASSWORD: "The password must contain at least 8 characters",
   ERROR_INVALID_CONFIRM_PASSWORD: "The passwords doesnt match",
   ERROR_AN_ERROR_HAS_OCCURRED: "An error has occurred",
 
