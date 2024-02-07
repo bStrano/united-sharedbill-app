@@ -28,6 +28,7 @@ interface SessionContextInterface {
     userCredentials?: {username: string; password: string},
   ): Promise<void>;
   logout(onlyLocalLogout?: boolean): Promise<void>;
+  session: RefreshSessionReturnInterface
 }
 
 const SessionContext = React.createContext({} as SessionContextInterface);
@@ -39,6 +40,7 @@ function SessionProvider(props: ISessionProviderProps) {
   const googleContext = useGoogle();
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>();
+  const [session, setSession] = useState<RefreshSessionReturnInterface>();
 
   const login = useCallback(
     async (
@@ -58,6 +60,7 @@ function SessionProvider(props: ISessionProviderProps) {
             userCredentials!.password,
           );
           session = await SessionAPI.loginWithInternal(userCredentials!.username, userCredentials!.password);
+
           break;
         default:
           throw new Error('Login type not supported');
@@ -77,19 +80,23 @@ function SessionProvider(props: ISessionProviderProps) {
 
   const createSession = useCallback(async (session?: RefreshSessionReturnInterface) => {
     if(!session) throw new Error('Session is required');
+    setSession(session)
     await AsyncStorage.setItem(AsyncStorageEnum.ACCESS_TOKEN, session.accessToken);
     await AsyncStorage.setItem(AsyncStorageEnum.REFRESH_TOKEN, session.refreshToken);
-  }, [])
+  }, [session])
 
   // Handle user state changes
   const onAuthStateChanged = useCallback(
-    (authState: {
+    async (authState: {
       _auth: FirebaseAuthTypes.AuthProvider;
       _user: FirebaseAuthTypes.User;
-    }) => {
+    }) =>  {
       if (!authState) {
         setUser(null);
       } else {
+        const refreshToken = await AsyncStorage.getItem(AsyncStorageEnum.REFRESH_TOKEN);
+        const data = await SessionAPI.restoreSession(refreshToken!);
+        createSession(data)
         setUser(authState._user);
       }
       if (initializing) {
@@ -120,14 +127,13 @@ function SessionProvider(props: ISessionProviderProps) {
           try {
             const refreshToken = await AsyncStorage.getItem(AsyncStorageEnum.REFRESH_TOKEN);
             const data = await SessionAPI.restoreSession(refreshToken!);
-            await AsyncStorage.setItem(AsyncStorageEnum.ACCESS_TOKEN, data.accessToken);
-            await AsyncStorage.setItem(AsyncStorageEnum.REFRESH_TOKEN, data.refreshToken);
+            createSession(data)
             accessToken = data.accessToken;
           } catch (e) {
             await logout(true)
           }
         }
-        console.log('accessToken',accessToken)
+        console.log(accessToken)
         config.headers.Authorization = `Bearer ${accessToken}`;
       }
 
@@ -154,7 +160,7 @@ function SessionProvider(props: ISessionProviderProps) {
   }, [onAuthStateChanged]);
 
   return (
-    <SessionContext.Provider value={{isLoggedIn, login, logout}}>
+    <SessionContext.Provider value={{isLoggedIn, login, logout, session}}>
       {props.children}
     </SessionContext.Provider>
   );

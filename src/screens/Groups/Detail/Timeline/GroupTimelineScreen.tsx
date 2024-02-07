@@ -35,7 +35,7 @@ function GroupTimelineScreenContent({ groupId }: { groupId: string }) {
         renderItem={({ item }) => <GroupTimelineItem transaction={item} />}
         renderSectionHeader={({ section: { year, month } }) => (
           <GroupTimelineHeader
-            title={MonthNome({ monthNumber: +month }) + " " + year}
+            title={MonthNome({ monthNumber: +month + 1 }) + " " + year}
           />
         )}
         sections={transactions}

@@ -7,6 +7,7 @@ import IconsModalSelect from "@components/Modals/IconsModalSelect/IconsModalSele
 import { MESSAGES } from "@constants/messages-ids";
 import { GroupStackParamList } from "@navigations/GroupStack";
 import { useAppForm } from "@providers/FormProvider";
+import { useSession } from "@providers/SessionProvider";
 import CreateTransactionProvider, {
   useCreateTransactionContext,
 } from "@providers/transaction/CreateTransactionProvider";
@@ -44,6 +45,8 @@ function CreateTransactionScreen({ route }: CreateTransactionScreenProps) {
   );
 }
 function CreateTransactionScreenContent(props: ICreateTransactionScreenProps) {
+  const sessionContext = useSession();
+
   const theme = useAppTheme();
   const formContext = useAppForm();
   const styles = useMemo(() => styleSheet(theme), [theme]);
@@ -72,22 +75,24 @@ function CreateTransactionScreenContent(props: ICreateTransactionScreenProps) {
 
   const onSubmit = () => {
     formContext.onSubmit(async (data: CreateTransaction) => {
-      if (group?.id && group?.participants?.length) {
-        const owners = [];
-        const debtors = [];
+      const loggeduser = sessionContext.session.user
+      if (group?.id && group?.participants?.length && loggeduser) {
+        console.log('participants',group?.participants)
 
+        const owners: any = [];
+        const debtors: any = [];
+
+        owners.push({
+          value: +data.total,
+          participantId: group.participants.find(participant => participant.userId === loggeduser.id )?.id,
+        })
+
+      
         for (const participant of group.participants) {
-          if (participant.userId === group.ownerId) {
-            owners.push({
-              value: +data.total,
-              participantId: participant.id,
-            });
-          } else {
-            debtors.push({
-              value: 0,
-              participantId: participant.id,
-            });
-          }
+          debtors.push({
+            value: 0,
+            participantId: participant.id,
+          });
         }
 
         await save({
