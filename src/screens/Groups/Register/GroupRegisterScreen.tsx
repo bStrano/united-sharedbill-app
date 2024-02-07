@@ -55,12 +55,14 @@ function GroupRegisterScreenContent(props: IGroupRegisterScreenProps) {
     });
   };
 
+  const icon =  formContext.form.watch('icon')
+
   return (
     <>
       <Background style={styles.container}>
         <View style={{ flex: 1 }}>
           <View style={styles.contentContainer}>
-            <IconsModalSelect changeIconValue={changeIconValue} />
+            <IconsModalSelect changeIconValue={changeIconValue} value={icon}/>
             <View style={{ flex: 1, marginHorizontal: 10 }}>
               <ControlledTextInput
                 id={"title"}

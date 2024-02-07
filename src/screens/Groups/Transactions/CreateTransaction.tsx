@@ -117,11 +117,13 @@ function CreateTransactionScreenContent(props: ICreateTransactionScreenProps) {
     name: "transactionType",
   });
 
+  const icon =  formContext.form.watch('icon')
+
   return (
     <>
       <Background style={styles.container}>
         <View style={styles.rowContainer}>
-          <IconsModalSelect changeIconValue={changeIconValue} />
+          <IconsModalSelect changeIconValue={changeIconValue} value={icon} />
           <View style={{ flex: 1 }}>
             <ControlledTextInput
               id={"title"}
@@ -142,6 +144,7 @@ function CreateTransactionScreenContent(props: ICreateTransactionScreenProps) {
           multiline={true}
           textAlignVertical={"top"}
           numberOfLines={4}
+          defaultValue=""
         />
 
         <CurrencyInput

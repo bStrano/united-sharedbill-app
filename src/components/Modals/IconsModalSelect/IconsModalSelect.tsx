@@ -1,6 +1,6 @@
 import { MESSAGES } from "@constants/messages-ids";
 import { AppTheme, useAppTheme } from "App";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import Modal from "react-native-modal";
@@ -16,11 +16,20 @@ interface IGroupRegisterScreenProps {
   }: {
     value: keyof typeof IconsEnum | undefined;
   }): void;
+
+  value: keyof typeof IconsEnum | undefined;
+  defaultValue?: keyof typeof IconsEnum | undefined;
 }
 
 function IconsModalSelect(props: IGroupRegisterScreenProps) {
   const theme = useAppTheme();
   const styles = useMemo(() => styleSheet(theme), [theme]);
+
+  useEffect(() => {
+    if(!props.value){
+      props.changeIconValue({value: props.defaultValue || 'eye'});
+    }
+  },[props.value])
 
   const changeIcon = ({
     value,
@@ -34,9 +43,7 @@ function IconsModalSelect(props: IGroupRegisterScreenProps) {
 
   const [iconSelected, setIconSelected] = useState<
     keyof typeof IconsEnum | undefined
-  >();
-
-  console.log(iconSelected);
+  >(props.defaultValue || 'eye');
 
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {

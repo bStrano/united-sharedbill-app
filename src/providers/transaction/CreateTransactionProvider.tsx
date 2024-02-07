@@ -39,7 +39,7 @@ function CreateTransactionProvider(props: ICreateTransactionProviderProps) {
       onSuccess() {
         Toast.show({
           type: "success",
-          text1: intl.formatMessage({ id: "TRANSACTION_CREATED_SUCCESSFULLY" }),
+          text1: intl.formatMessage({ id: "SUCCESSES_TRANSACTION_CREATED" }),
         });
       },
     }

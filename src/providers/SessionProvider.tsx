@@ -127,6 +127,7 @@ function SessionProvider(props: ISessionProviderProps) {
             await logout(true)
           }
         }
+        console.log('accessToken',accessToken)
         config.headers.Authorization = `Bearer ${accessToken}`;
       }
 

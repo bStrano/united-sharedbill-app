@@ -1,5 +1,5 @@
 import { MESSAGES } from "@constants/messages-ids";
-import { IsEnum, IsNumber, IsString } from "class-validator";
+import { IsEnum, IsNumber, IsOptional, IsString } from "class-validator";
 import { ParticipantAmountInterface } from "libs/united-sharedbill-core/src/modules/transactions/dtos/create-transaction.dto.interface";
 import { TransactionTypeEnum } from "libs/united-sharedbill-core/src/modules/transactions/enums/transaction-type.enum";
 import { IconsEnum } from "libs/united-sharedbill-core/src/shared/enums/icons.enum";
@@ -18,6 +18,7 @@ export class CreateTransaction {
   title: string;
 
   @IsString({ message: MESSAGES.ids.ERROR_TRANSACTION_INVALID_DESCRIPTION })
+  @IsOptional()
   description: string;
 
   @IsNumber()
